@@ -123,7 +123,7 @@ Runtime::Application::~Application() {
     // delete linked list
     while (current_node != nullptr) {
         next_node = current_node->n_pointer;
-        std::cout << "DELETING NODE " << current_node->data->getName() << std::endl;
+        std::cout << "DELETING NODE " << current_node->data->getName() << "\t Node Address:\t" << current_node << std::endl;
         delete current_node;
 
         // current_node->data is unique_ptr and will auto destruct

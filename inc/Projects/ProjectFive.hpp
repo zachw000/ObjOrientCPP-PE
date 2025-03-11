@@ -8,7 +8,7 @@ namespace Projects {
     class ProjectFive final : public Runtime::Project {
     private:
         unsigned short PID;
-        std::string_view p_name = std::string_view("Smallest Multiple");
+        std::string_view p_name = std::string_view("The Smallest Multiple");
     public:
         ProjectFive() : PID(5) {};
         ProjectFive(unsigned short id) : PID(id) {};
