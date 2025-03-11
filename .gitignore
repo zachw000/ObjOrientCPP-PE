@@ -1,0 +1,12 @@
+ProjectFive.o
+*.o
+ProjectFour.o
+*.dylib
+bin/Manager.dylib
+App.dSYM/Contents/Resources/DWARF/App
+App.dSYM/Contents/Info.plist
+App.dSYM/Contents/Resources/Relocations/aarch64/App.yml
+.vscode/settings.json
+.DS_Store
+App
+ObjOrientCPP-PE.sln
