@@ -10,3 +10,6 @@ App.dSYM/Contents/Resources/Relocations/aarch64/App.yml
 .DS_Store
 App
 ObjOrientCPP-PE.sln
+obj/
+App.dySM/
+.clangd

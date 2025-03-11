@@ -1,4 +1,4 @@
-CXX = g++
+CXX = clang++
 CXXFLAGS = -Wall -Wextra -std=c++17
 SRCDIR1 = src
 SRCDIR2 = src/Projects
@@ -24,6 +24,6 @@ $(OBJDIR)/%.o: $(SRCDIR2)/%.cpp
 	$(CXX) $(CXXFLAGS) -I$(INCDIR) -c $< -o $@
 
 clean:
-	rm -f $(BINDIR)/* $(OBJDIR)/*
+	rm -f $(BINDIR)/* $(OBJDIR)/*.o
 
 .PHONY: clean
