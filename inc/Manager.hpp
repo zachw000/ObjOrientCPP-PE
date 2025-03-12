@@ -61,7 +61,14 @@ namespace Runtime {
         std::unordered_map<int, Node*> addrs;
         ssize_t m_size = 0;
         Node* checkKey(int id);
-        void pushNode(Node* n_node);
+        void queueNode(Node* n_node); // adds node to the end of the linked list
+        void dequeueNode(); // removes node from the end of the linked list
+        void pushNode(Node* n_node); // adds node to the beginning of the linked list
+        void popNode(); // Pops the first node from the beginning of the linked list
+        void insertNode(Node* n_node, Node* prev_node); // inserts node after prev_node
+        void removeNode(Node* n_node); // removes node from the linked list
+        void insertNode(int id, Node* n_node); // inserts node after node with id
+        void removeNode(int id); // removes node from the linked list by id
     public:
         Project* getProjectByID(size_t id);
 
