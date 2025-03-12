@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Manager.hpp"
+#include <string_view>
 
 namespace Projects {
     class ProjectOne final : public Runtime::Project {
