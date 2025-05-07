@@ -45,6 +45,4 @@ void Projects::ProjectOne::setLimit(int newLimit) {
 }
 
 Projects::ProjectOne::~ProjectOne() {
-    std::cout << "Destructor Reached" << std::endl;
-    free(this->multiples);
 }

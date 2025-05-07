@@ -13,7 +13,9 @@ ObjOrientCPP-PE.sln
 obj/
 App.dySM/
 .clangd
-.vscode
+.vscode/
+.vscode/launch.json
+.vscode/tasks.json
 instance.sh
 bin/
 lib/
