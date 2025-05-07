@@ -1,5 +1,6 @@
 #include "../../inc/Projects/ProjectOne.hpp"
-
+#include <iostream>
+#include <cmath>
 size_t sumMultiple(int multiple, int limit) {
     size_t sum = 0;
     // Implement Series Sum

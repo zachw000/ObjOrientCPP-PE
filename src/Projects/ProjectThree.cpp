@@ -1,7 +1,7 @@
 #include "../../inc/Projects/ProjectThree.hpp"
-
+#include <iostream>
 int Projects::ProjectThree::run() {
-    std::cout <<"" << std::endl;
+    std::cout <<"This is a test run! Third time the charm!" << std::endl;
 
     unsigned short ID = this->getID();
     std::cout << "Project ID: " << ID << std::endl;

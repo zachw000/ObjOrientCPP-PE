@@ -13,3 +13,7 @@ ObjOrientCPP-PE.sln
 obj/
 App.dySM/
 .clangd
+.vscode
+instance.sh
+bin/
+lib/

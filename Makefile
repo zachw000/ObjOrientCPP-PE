@@ -1,5 +1,5 @@
-CXX = clang++
-CXXFLAGS = -Wall -Wextra -std=c++17
+CXX = g++
+CXXFLAGS = -Wall -Wextra -std=c++17 -fPIC -Os
 SRCDIR1 = src
 SRCDIR2 = src/Projects
 INCDIR = inc/Projects
@@ -10,10 +10,13 @@ SOURCES2 = $(wildcard $(SRCDIR2)/*.cpp)
 SOURCES = $(SOURCES1) $(SOURCES2)
 OBJECTS = $(SOURCES1:$(SRCDIR1)/%.cpp=$(OBJDIR)/%.o)
 OBJECTS += $(SOURCES2:$(SRCDIR2)/%.cpp=$(OBJDIR)/%.o)
-LIBRARY = $(BINDIR)/libmanager.dylib
+LIBRARY = $(BINDIR)/libmanager.so
 
 $(LIBRARY): $(OBJECTS)
-	$(CXX) $(CXXFLAGS) -dynamiclib -o $@ $^
+	@mkdir -p $(BINDIR)
+	$(CXX) $(CXXFLAGS) -shared -o $@ $^
+	@mkdir -p lib
+	@cp $(BINDIR)/libmanager.so lib/
 
 $(OBJDIR)/%.o: $(SRCDIR1)/%.cpp
 	@mkdir -p $(OBJDIR)
@@ -24,6 +27,6 @@ $(OBJDIR)/%.o: $(SRCDIR2)/%.cpp
 	$(CXX) $(CXXFLAGS) -I$(INCDIR) -c $< -o $@
 
 clean:
-	rm -f $(BINDIR)/* $(OBJDIR)/*.o
+	rm -f $(BINDIR)/* $(OBJDIR)/*.o lib/*
 
 .PHONY: clean
