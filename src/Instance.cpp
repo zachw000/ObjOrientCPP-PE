@@ -1,4 +1,4 @@
-#include "../inc/Manager.hpp"
+#include <Manager.hpp>
 #include <iostream>
 /**
  * An example implementation of this library.
