@@ -19,3 +19,9 @@ App.dySM/
 instance.sh
 bin/
 lib/
+libmanager.so
+DebugApp
+.clangd
+.gitignore
+.vscode/launch.json
+.vscode/tasks.json

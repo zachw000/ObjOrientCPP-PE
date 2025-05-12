@@ -10,13 +10,19 @@
           "request": "launch",
           "program": "${workspaceRoot}/App",
           "args": ["1"],
+          "linux": {
+            "symbolLoadInfo": {
+              "loadAll": true,
+              "exceptionList": ""
+            },
+          },
           "stopAtEntry": false,
           "cwd": "${workspaceRoot}/",
           "environment": [],
           "externalConsole": false,
-          "MIMode": "lldb",
+          "MIMode": "gdb",
           //"MIDebuggerPath": "/usr/bin/lldb",
-          "targetArchitecture": "arm64",
+          "targetArchitecture": "x64",
           "setupCommands": []
         }
       ]
