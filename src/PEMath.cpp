@@ -13,6 +13,11 @@ size_t Math::PEMath::sumMultiple(int multiple, int limit) {
     return sum;
 }
 
+/// @brief Gets the sum of multiples of two numbers up to a limit.
+/// @details Uses the inclusion-exclusion principle to avoid double counting.
+/// @param multiples 
+/// @param limit 
+/// @return 
 size_t Math::PEMath::sumMultiples(int multiples[2], int limit) {
     return sumMultiple(multiples[0], limit) +
         sumMultiple(multiples[1], limit) -
