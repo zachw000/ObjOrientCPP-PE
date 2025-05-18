@@ -162,7 +162,7 @@ void Runtime::Application::removeNode(int id) {
 
 void Runtime::Application::queueNode(Node* n_node) {
     std::cout << "Test reached" << std::endl;
-    // Purpose of this function is to add a new node to the linked list and map.
+    // Purpose of this function is to add a new node to the end of the linked list.
     this->ll_tail->n_pointer = n_node;
     n_node->n_pointer = nullptr;
 

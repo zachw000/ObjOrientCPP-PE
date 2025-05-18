@@ -4,6 +4,7 @@
 
 #include "Manager.hpp"
 #include <string_view>
+#include <complex>
 
 namespace Math {
     class PEMath {
@@ -20,6 +21,16 @@ namespace Math {
         static unsigned long long fibonacciSum(unsigned int n);
         static size_t sumMultiple(int multiple, int limit);
         static size_t sumMultiples(int multiples[2], int limit);
+    };
+
+    class Quaternion : std::complex<double> {
+    private:
+        double r, i, j, k;
+        Quaternion QuadMult(Quaternion a, std::static_cast<typename _T> t) {
+
+        }
+    public:
+        
     };
 }
 
