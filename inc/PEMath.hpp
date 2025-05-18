@@ -7,34 +7,20 @@
 #include <complex>
 
 namespace Math {
-    class FastMath {
+    class PEMath {
     public:
-        FastMath() = default;
-        ~FastMath() = default;
+        PEMath() = default;
+        ~PEMath() = default;
 
-        FastMath(const FastMath&) = delete;
-        FastMath& operator=(const FastMath&) = delete;
-
-        FastMath(FastMath&&) = delete;
-        FastMath& operator=(FastMath&&) = delete;
-
-        static double sqrt(double x);
-        static double pow(double x, double y);
-        static double exp(double x);
-        static double log(double x);
-        static double sin(double x);
-        static double cos(double x);
-        static double tan(double x);
-        static double asin(double x);
-        static double acos(double x);
-        static double atan(double x);
-        static double atan2(double y, double x);
-        static double sinh(double x);
-        static double cosh(double x);
-        static double tanh(double x);
-        static double asinh(double x);
-        static double acosh(double x);
-        static double atanh(double x);
+        static unsigned long long fibonacci(unsigned int n);
+        static unsigned long long evenFibonacciSum(unsigned int limit);
+        static unsigned long long factorial(unsigned int n);
+        static unsigned long long gcd(unsigned long long a, unsigned long long b);
+        static unsigned long long lcm(unsigned long long a, unsigned long long b);
+        static unsigned long long power(unsigned int base, unsigned int exponent);
+        static unsigned long long fibonacciSum(unsigned int n);
+        static size_t sumMultiple(int multiple, int limit);
+        static size_t sumMultiples(int multiples[2], int limit);
     };
 
     class Quaternion : std::complex<double> {

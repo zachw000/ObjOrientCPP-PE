@@ -186,6 +186,28 @@ void Runtime::Application::popNode() {
     this->m_size--;
 }
 
+// inserts new node (n_node) after prev_node
+void Runtime::Application::insertNode(Runtime::Node* n_node, Runtime::Node* prev_node) {
+    if (prev_node == nullptr) {
+        std::cerr << "Error: prev_node is null, node cannot be inserted!" << std::endl;
+        return;
+    }
+    n_node->n_pointer = prev_node->n_pointer;
+    prev_node->n_pointer = n_node;
+    n_node->p_pointer = prev_node;
+
+    if (n_node->n_pointer != nullptr) {
+        n_node->n_pointer->p_pointer = n_node;
+    }
+    prev_node->n_pointer = n_node;
+    n_node->p_pointer = prev_node;
+    // add to map
+    this->addrs.insert(std::make_pair(n_node->data->getID(), n_node));
+    // increment size   
+    this->m_size++;
+    return;
+}
+
 // checks if key is in map, faster than iterating through linked list. (especially as n gets large.)
 Runtime::Node* Runtime::Application::checkKey(int id) {
     auto it = this->addrs.find(id);
