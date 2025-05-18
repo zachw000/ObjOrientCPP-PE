@@ -4,6 +4,7 @@
 
 #include "Manager.hpp"
 #include <string_view>
+#include <complex>
 
 namespace Math {
     class FastMath {
@@ -34,6 +35,16 @@ namespace Math {
         static double asinh(double x);
         static double acosh(double x);
         static double atanh(double x);
+    };
+
+    class Quaternion : std::complex<double> {
+    private:
+        double r, i, j, k;
+        Quaternion QuadMult(Quaternion a, std::static_cast<typename _T> t) {
+
+        }
+    public:
+        
     };
 }
 
