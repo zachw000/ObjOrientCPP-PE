@@ -21,6 +21,7 @@ int main(int argc, char **argv) {
 		try {
 			app->run();
 			RET_CODE = app ? 0 : 1;
+			std::cout << "Application Created Successfully" << std::endl;
 		} catch (std::bad_alloc e) {
 			std::cerr << "Insufficient Memory" << std::endl;
 			RET_CODE = 2;

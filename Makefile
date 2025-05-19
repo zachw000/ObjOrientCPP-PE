@@ -1,12 +1,12 @@
 CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++17 -fPIC -Os
-CXXFLAGS2 = -Wl,-rpath=./lib -L ./lib -lmanager -lm -I ./inc/
+CXXFLAGS2 = -Wl,-rpath=lib/ -L lib/ -lmanager -lm -I inc/
 SRCDIR1 = src
 SRCDIR2 = src/Projects
 INCDIR = inc/Projects
 BINDIR = bin
 OBJDIR = obj
-SOURCES1 = $(filter-out $(SRCDIR1)/Instance.cpp, $(wildcard $(SRCDIR1)/*.cpp))
+SOURCES1 = $(filter-out $(SRCDIR1)/Manager/Instance.cpp, $(wildcard $(SRCDIR1)/*.cpp))
 SOURCES2 = $(wildcard $(SRCDIR2)/*.cpp)
 SOURCES = $(SOURCES1) $(SOURCES2)
 OBJECTS = $(SOURCES1:$(SRCDIR1)/%.cpp=$(OBJDIR)/%.o)
