@@ -6,8 +6,6 @@
  * @date 2025-05-12
  * @brief Project Two Even Fibonacci Numbers
  * @details This project calculates the sum of even Fibonacci numbers up to a given limit.
- * @note This project is a simple implementation of the Fibonacci sequence and demonstrates
- *       the use of loops and conditionals in C++.
  * @warning This project is for educational purposes only and should not be used in production.
  * @license Apache-2.0 All rights reserved.
  * @see
@@ -21,7 +19,7 @@
  */
 
 int Projects::ProjectTwo::run() {
-    std::cout << "" << std::endl;
+    std::cout << "Even Fibonacci Numbers (linker test)" << std::endl;
 
     unsigned short ID = this->getID();
     std::cout << "Project ID: " << ID << std::endl;
