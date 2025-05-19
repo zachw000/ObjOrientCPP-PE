@@ -1,5 +1,6 @@
 CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++17 -fPIC -Os
+CXXFLAGS2 = -Wl,-rpath=./lib -L ./lib -lmanager -lm -I ./inc/
 SRCDIR1 = src
 SRCDIR2 = src/Projects
 INCDIR = inc/Projects
@@ -11,6 +12,11 @@ SOURCES = $(SOURCES1) $(SOURCES2)
 OBJECTS = $(SOURCES1:$(SRCDIR1)/%.cpp=$(OBJDIR)/%.o)
 OBJECTS += $(SOURCES2:$(SRCDIR2)/%.cpp=$(OBJDIR)/%.o)
 LIBRARY = $(BINDIR)/libmanager.so
+EXECUTABLE = $(BINDIR)/Manager
+
+$(EXECUTABLE): $(LIBRARY)
+	@mkdir -p $(BINDIR)
+	$(CXX) $(CXXFLAGS) $(CXXFLAGS2) -o $@ $(SRCDIR1)/Manager/Instance.cpp
 
 $(LIBRARY): $(OBJECTS)
 	@mkdir -p $(BINDIR)
