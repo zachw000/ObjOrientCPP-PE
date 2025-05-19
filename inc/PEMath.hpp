@@ -26,9 +26,9 @@ namespace Math {
     class Quaternion : std::complex<double> {
     private:
         double r, i, j, k;
-        Quaternion QuadMult(Quaternion a, std::static_cast<typename _T> t) {
+        /*Quaternion QuadMult(Quaternion a, std::static_cast<typename _T> t) {
 
-        }
+        }*/
     public:
         
     };
