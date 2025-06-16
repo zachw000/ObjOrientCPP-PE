@@ -1,4 +1,5 @@
 #include "../../inc/Projects/ProjectTwo.hpp"
+#include "../../inc/PEMath.hpp"
 #include <iostream>
 
 /**
@@ -19,10 +20,16 @@
  */
 
 int Projects::ProjectTwo::run() {
-    std::cout << "Even Fibonacci Numbers (linker test)" << std::endl;
+    std::cout << "Even Fibonacci Numbers (linker test 2)" << std::endl;
+
+    std::cout << "Calculating the sum of even Fibonacci numbers up to " 
+              << this->limit << "..." << std::endl;
+    unsigned long long sum = Math::PEMath::evenFibonacciSum(this->limit);
+    std::cout << "Sum of even Fibonacci numbers: " << sum << std::endl;
+    std::cout << "Project Name: " << this->getName() << std::endl;
+    std::cout << "Project ID: " << this->PID << std::endl;
 
     unsigned short ID = this->getID();
-    std::cout << "Project ID: " << ID << std::endl;
 
     return 0;
 }

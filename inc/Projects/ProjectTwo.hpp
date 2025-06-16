@@ -7,6 +7,7 @@ namespace Projects {
     class ProjectTwo final : public Runtime::Project {
     private:
         unsigned short PID;
+        const unsigned int limit = 4000000; // Limit for Fibonacci numbers
         std::string_view p_name = std::string_view("Even Fibonacci numbers");
     public:
         ProjectTwo() : PID(2) {};

@@ -1,4 +1,4 @@
-#include "../../inc/Manager.hpp"
+#include <Manager.hpp>
 #include <iostream>
 /**
  * An example implementation of this library.
@@ -40,7 +40,7 @@ int main(int argc, char **argv) {
 		std::cout << "Done." << std::endl;
 	}	// end of scope
 
-	std::cout << "Application ran for " << static_cast<float>(clock() - timer_start) / CLOCKS_PER_SEC << " seconds." << std::endl;
+	std::cout << "Application ran for " << static_cast<float>(clock() - timer_start) / CLOCKS_PER_SEC << " second(s)!" << std::endl;
 
 	return RET_CODE;
 }
