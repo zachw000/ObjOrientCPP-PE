@@ -1,7 +1,8 @@
 #include "../../inc/Projects/ProjectThree.hpp"
 #include <iostream>
+
 int Projects::ProjectThree::run() {
-    std::cout <<"This is a test run! Third time the charm!" << std::endl;
+    std::cout <<"Largest Prime Factor (Problem 3)" << std::endl;
 
     unsigned short ID = this->getID();
     std::cout << "Project ID: " << ID << std::endl;

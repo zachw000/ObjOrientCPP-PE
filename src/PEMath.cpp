@@ -52,16 +52,20 @@ unsigned long long Math::PEMath::fibonacciSum(unsigned int limit) {
 
 unsigned long long Math::PEMath::evenFibonacciSum(unsigned int limit) {
     unsigned long long sum = 0;
-    unsigned int n = 0;
+    unsigned int n = 3;
     unsigned long long fib = fibonacci(n);
 
     while (fib <= limit) {
         if (fib % 2 == 0) {
             sum += fib;
         }
-        n++;
+        n += 3;
         fib = fibonacci(n);
     }
+
+    // OBSERVATION: The Fibonacci sequence contains an even number every third term.
+    // This means we can optimize the calculation by only considering every third Fibonacci number.
+    // This is because the Fibonacci sequence is periodic with respect to even numbers.
 
     return sum;
 }
@@ -74,10 +78,36 @@ unsigned long long Math::PEMath::power(unsigned int base, unsigned int exponent)
     return result;
 }
 
+std::vector<int> primeFactors(unsigned long long n) {
+    std::vector<int> factors;
+
+    // Check for number of 2s that divide n
+    while (n % 2 == 0) {
+        factors.push_back(2);
+        n /= 2;
+    }
+
+    // n must be odd at this point, so we can skip even numbers
+    for (unsigned long long i = 3; i <= std::sqrt(n); i += 2) {
+        while (n % i == 0) {
+            factors.push_back(i);
+            n /= i;
+        }
+    }
+
+    // This condition is to check if n is a prime number greater than 2
+    if (n > 2) {
+        factors.push_back(n);
+    }
+
+    // Convert vector to array and return
+    return factors;
+}
+
 unsigned long long Math::PEMath::factorial(unsigned int n) {
-    
+    return 0; // Placeholder for factorial implementation
 }
 
 unsigned long long Math::PEMath::gcd(unsigned long long a, unsigned long long b) {
-
+    return 0; // Placeholder for GCD implementation
 }
