@@ -111,3 +111,51 @@ unsigned long long Math::PEMath::factorial(unsigned int n) {
 unsigned long long Math::PEMath::gcd(unsigned long long a, unsigned long long b) {
     return 0; // Placeholder for GCD implementation
 }
+
+// Quaternion implementation
+Math::Quaternion::Quaternion(double a, double b, double c, double d)
+    : a(a), b(b), c(c), d(d) {}
+
+Math::Quaternion Math::Quaternion::operator+(const Quaternion& other) const {
+    return Quaternion(a + other.a, b + other.b, c + other.c, d + other.d);
+}
+
+Math::Quaternion Math::Quaternion::operator-(const Quaternion& other) const {
+    return Quaternion(a - other.a, b - other.b, c - other.c, d - other.d);
+}
+
+Math::Quaternion Math::Quaternion::operator*(const Quaternion& other) const {
+    double na = a * other.a - b * other.b - c * other.c - d * other.d;
+    double nb = a * other.b + b * other.a + c * other.d - d * other.c;
+    double nc = a * other.c - b * other.d + c * other.a + d * other.b;
+    double nd = a * other.d + b * other.c - c * other.b + d * other.a;
+    return Quaternion(na, nb, nc, nd);
+}
+
+Math::Quaternion Math::Quaternion::operator*(double scalar) const {
+    return Quaternion(a * scalar, b * scalar, c * scalar, d * scalar);
+}
+
+Math::Quaternion operator*(double scalar, const Math::Quaternion& q) {
+    return q * scalar;
+}
+
+double Math::Quaternion::norm() const {
+    return std::sqrt(a * a + b * b + c * c + d * d);
+}
+
+Math::Quaternion Math::Quaternion::normalized() const {
+    double n = norm();
+    return Quaternion(a / n, b / n, c / n, d / n);
+}
+
+double Math::Quaternion::i_component() const { return b; }
+double Math::Quaternion::j_component() const { return c; }
+double Math::Quaternion::k_component() const { return d; }
+double Math::Quaternion::scalar_component() const { return a; }
+
+std::ostream& Math::operator<<(std::ostream& os, const Math::Quaternion& q) {
+    os << q.scalar_component() << "+" << q.i_component() << "i+"
+       << q.j_component() << "j+" << q.k_component() << "k";
+    return os;
+}
