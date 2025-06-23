@@ -23,6 +23,7 @@ $(LIBRARY): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -shared -o $@ $^
 	@mkdir -p lib
 	@cp $(BINDIR)/libmanager.so lib/
+	@rm -rf $(OBJDIR)
 
 $(OBJDIR)/%.o: $(SRCDIR1)/%.cpp
 	@mkdir -p $(OBJDIR)

@@ -146,6 +146,9 @@ double Math::Quaternion::norm() const {
 
 Math::Quaternion Math::Quaternion::normalized() const {
     double n = norm();
+    if (n == 0) {
+        return Quaternion(0, 0, 0, 0); // Avoid division by zero
+    }
     return Quaternion(a / n, b / n, c / n, d / n);
 }
 
