@@ -26,12 +26,14 @@ Projects::ProjectList::ProjectList() {
     this->projectList[2] = std::make_unique<Projects::ProjectThree>(3);
     this->projectList[3] = std::make_unique<Projects::ProjectFour>(4);
     this->projectList[4] = std::make_unique<Projects::ProjectFive>(5);
+    this->projectList[5] = std::make_unique<Projects::ProjectSix>(6);
 
     this->projectList[0]->setID(1);
     this->projectList[1]->setID(2);
     this->projectList[2]->setID(3);
     this->projectList[3]->setID(4);
     this->projectList[4]->setID(5);
+    this->projectList[5]->setID(6);
 }
 Projects::ProjectList::~ProjectList() {
     this->projectList.clear();

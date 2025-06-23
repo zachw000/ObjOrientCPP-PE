@@ -15,5 +15,6 @@ unsigned short Projects::ProjectThree::getID() {
 }
 
 Projects::ProjectThree::~ProjectThree() {
-    std::cout << "Destructor Reached" << std::endl;
+    // TODO: Delete this->factors<int> when implemented
+    return;
 }

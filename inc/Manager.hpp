@@ -36,7 +36,7 @@ namespace Runtime {
     public:
         Project(int id) : PID(id) {}
         Project() : PID(0) {}
-        ~Project();
+        virtual ~Project();
         virtual int run();
         virtual std::string_view getName() const {
             return this->p_name;
@@ -78,7 +78,7 @@ namespace Runtime {
 
         Application(int Argc, char **Argv) : Manager(Argc, Argv) {};
         Application() : Manager() {}
-        ~Application();
+        virtual ~Application();
     };
 
 };

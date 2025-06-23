@@ -6,12 +6,13 @@
 #include <string_view>
 #include <complex>
 #include <vector>
+#include <cmath>
 
 namespace Math {
     class PEMath {
     private:
-        static constexpr double m_PHI = (1 + sqrt(5)) / 2;
-        static constexpr double m_PHI_CONJUGATE = -1 * (1 / m_PHI);
+        double m_PHI = (1 + sqrt(5)) / 2;
+        double m_PHI_CONJUGATE = -1 * (1 / m_PHI);
     public:
         PEMath() = default;
         ~PEMath() = default;

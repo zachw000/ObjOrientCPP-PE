@@ -27,9 +27,7 @@ int Projects::ProjectTwo::run() {
     unsigned long long sum = Math::PEMath::evenFibonacciSum(this->limit);
     std::cout << "Sum of even Fibonacci numbers: " << sum << std::endl;
     std::cout << "Project Name: " << this->getName() << std::endl;
-    std::cout << "Project ID: " << this->PID << std::endl;
-
-    unsigned short ID = this->getID();
+    std::cout << "Project ID: " << this->getID() << std::endl;
 
     return 0;
 }
@@ -39,5 +37,5 @@ unsigned short Projects::ProjectTwo::getID() {
 }
 
 Projects::ProjectTwo::~ProjectTwo() {
-    std::cout << "Destructor Reached" << std::endl;
+    return;
 }

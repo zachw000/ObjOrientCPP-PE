@@ -14,5 +14,5 @@ unsigned short Projects::ProjectFive::getID() {
 }
 
 Projects::ProjectFive::~ProjectFive() {
-    std::cout << "Destructor Reached" << std::endl;
+    return;
 }

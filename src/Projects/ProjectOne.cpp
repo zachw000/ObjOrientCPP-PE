@@ -35,4 +35,7 @@ void Projects::ProjectOne::setLimit(int newLimit) {
 }
 
 Projects::ProjectOne::~ProjectOne() {
+    this->setLimit(0);
+
+    return;
 }

@@ -5,6 +5,7 @@
 #include "Projects/ProjectThree.hpp"
 #include "Projects/ProjectFour.hpp"
 #include "Projects/ProjectFive.hpp"
+#include "Projects/ProjectSix.hpp"
 #ifndef PROJECTS_H
 #define PROJECTS_H
 
