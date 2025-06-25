@@ -1,39 +1,72 @@
-CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++17 -fPIC -Os
-CXXFLAGS2 = -Wl,-rpath=lib/ -L ./bin -lmanager -lm -I inc/
-SRCDIR1 = src
-SRCDIR2 = src/Projects
-INCDIR = inc/Projects
-BINDIR = bin
-OBJDIR = obj
-SOURCES1 = $(filter-out $(SRCDIR1)/Manager/Instance.cpp, $(wildcard $(SRCDIR1)/*.cpp))
-SOURCES2 = $(wildcard $(SRCDIR2)/*.cpp)
-SOURCES = $(SOURCES1) $(SOURCES2)
-OBJECTS = $(SOURCES1:$(SRCDIR1)/%.cpp=$(OBJDIR)/%.o)
-OBJECTS += $(SOURCES2:$(SRCDIR2)/%.cpp=$(OBJDIR)/%.o)
-LIBRARY = $(BINDIR)/libmanager.so
-EXECUTABLE = $(BINDIR)/Manager
+# Detect OS and set shared library extension and flags
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+	SHLIB_EXT := so
+	SHLIB_FLAGS := -shared -fPIC
+	SHLIB_NAME := libmanager.$(SHLIB_EXT)
+	SHLIB_TARGET := lib/$(SHLIB_NAME)
+else ifeq ($(UNAME_S),Darwin)
+	SHLIB_EXT := dylib
+	SHLIB_FLAGS := -dynamiclib -fPIC
+	SHLIB_NAME := libmanager.$(SHLIB_EXT)
+	SHLIB_TARGET := lib/$(SHLIB_NAME)
+else
+	# Assume Windows (MinGW or similar)
+	SHLIB_EXT := dll
+	SHLIB_FLAGS := -shared
+	SHLIB_NAME := Manager.$(SHLIB_EXT)
+	SHLIB_TARGET := lib/$(SHLIB_NAME)
+endif
 
-$(EXECUTABLE): $(LIBRARY)
-	@mkdir -p $(BINDIR)
-	$(CXX) $(CXXFLAGS) $(CXXFLAGS2) -o $@ $(SRCDIR1)/Manager/Instance.cpp
+CXX := g++
+CXXFLAGS := -Wall -Wextra -std=c++17 -O2  -fPIC
+INCLUDES := -Iinc -Iinc/Projects
+SRC_DIRS := src src/Projects
+OBJDIR := obj
+BINDIR := bin
+LIBDIR := lib
+TARGET := $(BINDIR)/Manager
 
-$(LIBRARY): $(OBJECTS)
-	@mkdir -p $(BINDIR)
-	$(CXX) $(CXXFLAGS) -shared -o $@ $^
-	@mkdir -p lib
-	@cp $(BINDIR)/libmanager.so lib/
-	@rm -rf $(OBJDIR)
+# Find all .cpp files except Instance.cpp
+SRCS := $(filter-out src/Manager/Instance.cpp, $(wildcard src/*.cpp)) $(wildcard src/Projects/*.cpp)
+OBJS := $(patsubst src/%.cpp,$(OBJDIR)/%.o,$(filter src/%.cpp,$(SRCS))) \
+		$(patsubst src/Projects/%.cpp,$(OBJDIR)/Projects/%.o,$(filter src/Projects/%.cpp,$(SRCS)))
 
-$(OBJDIR)/%.o: $(SRCDIR1)/%.cpp
-	@mkdir -p $(OBJDIR)
-	$(CXX) $(CXXFLAGS) -I$(INCDIR) -c $< -o $@
+# Default target
+all: $(BINDIR) $(LIBDIR) $(TARGET)
 
-$(OBJDIR)/%.o: $(SRCDIR2)/%.cpp
-	@mkdir -p $(OBJDIR)
-	$(CXX) $(CXXFLAGS) -I$(INCDIR) -c $< -o $@
+# Build the shared library
+$(SHLIB_TARGET): $(OBJS) | $(LIBDIR)
+	$(CXX) $(CXXFLAGS) $(SHLIB_FLAGS) -o $@ $^
 
+# Build the application binary
+$(TARGET): $(SHLIB_TARGET) src/Manager/Instance.cpp | $(BINDIR)
+	$(CXX) -Wl,-rpath=lib/ $(CXXFLAGS) $(INCLUDES) -o $@ src/Manager/Instance.cpp -L$(LIBDIR) -lmanager
+
+# Object file rules
+$(OBJDIR)/%.o: src/%.cpp | $(OBJDIR)
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJDIR)/Projects/%.o: src/Projects/%.cpp | $(OBJDIR)/Projects
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+# Directory creation
+$(BINDIR):
+	mkdir -p $@
+
+$(LIBDIR):
+	mkdir -p $@
+
+$(OBJDIR):
+	mkdir -p $@
+
+$(OBJDIR)/Projects:
+	mkdir -p $@
+
+# Clean rule
 clean:
-	rm -f $(BINDIR)/* $(OBJDIR)/*.o lib/*
+	rm -rf $(OBJDIR) $(BINDIR) $(LIBDIR)
 
-.PHONY: clean
+.PHONY: all clean
