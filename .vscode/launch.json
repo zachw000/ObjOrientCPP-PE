@@ -2,12 +2,54 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Debug Manager",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Manager",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "Build Manager",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for lldb",
+                    "text": "settings set target.run-args",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "Debug Manager with args",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Manager",
+            "args": [
+                "2"
+            ],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "Build Manager",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for lldb",
+                    "text": "settings set target.run-args",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
             "name": "(lldb) Launch Test",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceRoot}/bin/Manager",
             "args": [
-                "1"
+                "2"
             ],
             "linux": {
                 "symbolLoadInfo": {

@@ -1,5 +1,23 @@
 {
-    "tasks": [
+"tasks": [
+    {
+        "label": "Build Manager",
+        "type": "shell",
+        "command": "make",
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        },
+        "problemMatcher": ["$gcc"],
+        "detail": "Build the Manager binary using Makefile"
+    },
+    {
+        "label": "Clean",
+        "type": "shell",
+        "command": "make clean",
+        "group": "build",
+        "problemMatcher": []
+    },
         {
             "type": "cppbuild",
             "label": "C/C++: clang++ build active file",

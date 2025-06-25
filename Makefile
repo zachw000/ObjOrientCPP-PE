@@ -19,7 +19,7 @@ else
 endif
 
 CXX := g++
-CXXFLAGS := -Wall -Wextra -std=c++17 -O2  -fPIC
+CXXFLAGS := -Wall -Wextra -std=c++17 -O2 -g -fPIC
 INCLUDES := -Iinc -Iinc/Projects
 SRC_DIRS := src src/Projects
 OBJDIR := obj
@@ -41,7 +41,7 @@ $(SHLIB_TARGET): $(OBJS) | $(LIBDIR)
 
 # Build the application binary
 $(TARGET): $(SHLIB_TARGET) src/Manager/Instance.cpp | $(BINDIR)
-	$(CXX) -Wl,-rpath=lib/ $(CXXFLAGS) $(INCLUDES) -o $@ src/Manager/Instance.cpp -L$(LIBDIR) -lmanager
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $@ src/Manager/Instance.cpp -L$(LIBDIR) -lmanager
 
 # Object file rules
 $(OBJDIR)/%.o: src/%.cpp | $(OBJDIR)
