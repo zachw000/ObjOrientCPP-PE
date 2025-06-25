@@ -21,7 +21,11 @@ int Runtime::Application::processCMDs() {
     char ** argdata = this->getArgV();
 
     if (argcount > 1) {
-        std::cout << "Multiple Arguments Detected" << std::endl;
+        std::cout << "Multiple Arguments Detected" << std::endl << "Arg Count: " << argcount << std::endl;
+        std::cout << "Arg Data: " << std::endl;
+        for (unsigned int i = 0; i < argcount; i++) {
+            std::cout << "Arg " << i << ": " << argdata[i] << std::endl;
+        }   
         return argcount;
     } else {
         std::cout << "No Further Args Supplied" << std::endl;
@@ -53,7 +57,7 @@ void Runtime::Application::run() {
     unsigned short size = 1;
 
     for (int i = 0; i < PID_L; i++) {
-        this->addrs[i] = proj_ll;
+        this->addrs[i + 1] = proj_ll;
         if (i == 0) {
             proj_ll->p_pointer = nullptr;
         }
@@ -97,9 +101,7 @@ void Runtime::Application::run() {
             std::cout << "Current Project ID is: " << id_result->data->getID() << std::endl;
             id_result->data->run();
         }
-    }   // simple test complete.
-    Node* node = new Node;
-    this->queueNode(node);
+    }
 
     return;
 }
@@ -220,6 +222,11 @@ Runtime::Application::~Application() {
     // delete linked list
     while (current_node != nullptr) {
         next_node = current_node->n_pointer;
+        // remove from map by ID
+        this->addrs.erase(current_node->data->getID());
+        // delete the node
+        // Note: current_node->data is a unique_ptr, so it will be automatically destruct
+        // when current_node is deleted.
         std::cout << "DELETING NODE " << current_node->data->getName() << "\t Node Address:\t" << current_node << std::endl;
         delete current_node;
 
@@ -229,6 +236,19 @@ Runtime::Application::~Application() {
     }
     //std::cout << "ALL NODES DELETED" << std::endl;
     this->ll_head = nullptr;
+    this->ll_tail = nullptr;
+
+    // check if addrs is not empty before clearing
+    if (!this->addrs.empty()) {
+        std::cout << "Clearing addrs map..." << std::endl;
+
+        for (auto& pair : this->addrs) {
+            std::cout << "Deleting Node with ID: " << pair.first << "\t Address: " << pair.second << std::endl;
+            delete pair.second; // delete the Node pointer
+        }
+    }
+
+
     this->addrs.clear();
 
     if (this->addrs.empty()) this->m_size = addrs.size();
