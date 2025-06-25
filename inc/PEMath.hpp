@@ -14,7 +14,7 @@ namespace Math {
         double m_PHI = (1 + sqrt(5)) / 2;
         double m_PHI_CONJUGATE = -1 * (1 / m_PHI);
     public:
-        PEMath() = default;
+        PEMath() = delete;
         ~PEMath() = default;
 
         static unsigned long long fibonacci(unsigned int n);
