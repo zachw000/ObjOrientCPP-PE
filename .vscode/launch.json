@@ -29,7 +29,7 @@
             "args": [
                 "2"
             ],
-            "stopAtEntry": true,
+            "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,

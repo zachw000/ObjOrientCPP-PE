@@ -40,9 +40,7 @@ unsigned long long Math::PEMath::fibonacciSum(unsigned int limit) {
     unsigned long long fib = fibonacci(n);
     
     while (fib <= limit) {
-        if (fib % 2 == 0) {
-            sum += fib;
-        }
+        sum += fib;
         n++;
         fib = fibonacci(n);
     }
