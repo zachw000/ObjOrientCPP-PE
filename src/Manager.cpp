@@ -92,7 +92,7 @@ void Runtime::Application::run() {
 
     if (this->getArgc() > 1) {
         // get 2nd argument
-        unsigned short n_PID = (unsigned short)std::stoi(this->getArgV()[1]) - 1;
+        unsigned short n_PID = (unsigned short)std::stoi(this->getArgV()[1]);
         // default to last project
         selectedPID = n_PID;
         std::cout << "In Branch." << std::endl;

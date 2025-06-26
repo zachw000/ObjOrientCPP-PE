@@ -21,6 +21,9 @@ endif
 CXX := g++
 CXXFLAGS := -Wall -Wextra -std=c++17 -O2 -g -fPIC
 INCLUDES := -Iinc -Iinc/Projects
+ifeq ($(UNAME_S), Linux)
+	INCLUDES += -Wl,-rpath=lib/
+endif
 SRC_DIRS := src src/Projects
 OBJDIR := obj
 BINDIR := bin

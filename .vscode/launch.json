@@ -33,11 +33,11 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "lldb",
+            "MIMode": "gdb",
             "preLaunchTask": "Build Manager",
             "setupCommands": [
                 {
-                    "description": "Enable pretty-printing for lldb",
+                    "description": "Enable pretty-printing for gdb",
                     "text": "settings set target.run-args",
                     "ignoreFailures": true
                 }
