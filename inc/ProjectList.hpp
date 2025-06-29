@@ -12,12 +12,20 @@
 namespace Projects {
     class ProjectList {
     private:
-        std::unordered_map<int, std::unique_ptr<Runtime::Project>> projectList;
+        inline static std::unordered_map<int, std::unique_ptr<Runtime::Project>> projectList;
     public:
         ProjectList();
 
         ~ProjectList();
-
+        // Static method to register a project with a unique ID
+        static bool registerProject(int id, std::unique_ptr<Runtime::Project> project) {
+            if (projectList.find(id) != projectList.end()) {
+                return false; // Project ID already exists
+            }
+            projectList[id] = std::move(project);
+            return true;
+        }
+        
         void addProject(int id, std::unique_ptr<Runtime::Project> project);
         void removeProject(int id);
         void updateProject(int id, std::unique_ptr<Runtime::Project> project);
