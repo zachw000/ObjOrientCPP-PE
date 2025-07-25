@@ -92,19 +92,17 @@ void Runtime::Application::run() {
 
     if (this->getArgc() > 1) {
         // get 2nd argument
-        unsigned short n_PID = (unsigned short)std::stoi(this->getArgV()[1]);
+        const unsigned short n_PID = static_cast<unsigned short>(std::stoi(this->getArgV()[1]));
         // default to last project
         selectedPID = n_PID;
         std::cout << "In Branch." << std::endl;
-        Node* id_result = this->checkKey(selectedPID);
-        if(id_result != nullptr) {
+        if (const Node* id_result = this->checkKey(selectedPID)) {
             std::cout << "Current Project ID is: " << id_result->data->getID() << std::endl;
             id_result->data->run();
         }
     }
 
-    return;
-}
+    }
 
 void Runtime::Application::pushNode(Node* node) {
     // Adds node to the beginning of the linked list
@@ -134,7 +132,7 @@ void Runtime::Application::dequeueNode() {
 
 void Runtime::Application::removeNode(Node* n_node) {
     int map_id = n_node->data->getID();
-    if(n_node == nullptr) {
+    if (!n_node) {
         return;
     }
     if(n_node == this->ll_head) {
@@ -155,9 +153,8 @@ void Runtime::Application::removeNode(Node* n_node) {
     this->addrs.erase(map_id);
 }
 
-void Runtime::Application::removeNode(int id) {
-    Node* node = this->checkKey(id);
-    if(node != nullptr) {
+void Runtime::Application::removeNode(const int id) {
+    if(Node* node = this->checkKey(id); node != nullptr) {
         this->removeNode(node);
     }
 }
@@ -175,13 +172,12 @@ void Runtime::Application::queueNode(Node* n_node) {
 
     this->addrs.insert(std::make_pair(n_node->data->getID(), n_node));
     this->ll_tail = n_node;
-    return;
 }
 
 void Runtime::Application::popNode() {
     if (this->ll_head == nullptr) return;
 
-    Node* temp = this->ll_head;
+    const Node* temp = this->ll_head;
     this->ll_head = this->ll_head->n_pointer;
     this->addrs.erase(temp->data->getID());
     delete temp;
@@ -207,18 +203,17 @@ void Runtime::Application::insertNode(Runtime::Node* n_node, Runtime::Node* prev
     this->addrs.insert(std::make_pair(n_node->data->getID(), n_node));
     // increment size   
     this->m_size++;
-    return;
 }
 
 // checks if key is in map, faster than iterating through linked list. (especially as n gets large.)
-Runtime::Node* Runtime::Application::checkKey(int id) {
-    auto it = this->addrs.find(id);
+Runtime::Node* Runtime::Application::checkKey(const int id) {
+    const auto it = this->addrs.find(id);
     return it != this->addrs.end() ? it->second : nullptr;
 }
 
 Runtime::Application::~Application() {
-    Node* current_node = this->ll_head;
-    Node* next_node = nullptr;
+    const Node* current_node = this->ll_head;
+    const Node* next_node = nullptr;
     // delete linked list
     while (current_node != nullptr) {
         next_node = current_node->n_pointer;
@@ -242,9 +237,9 @@ Runtime::Application::~Application() {
     if (!this->addrs.empty()) {
         std::cout << "Clearing addrs map..." << std::endl;
 
-        for (auto& pair : this->addrs) {
-            std::cout << "Deleting Node with ID: " << pair.first << "\t Address: " << pair.second << std::endl;
-            delete pair.second; // delete the Node pointer
+        for (auto& [fst, snd] : this->addrs) {
+            std::cout << "Deleting Node with ID: " << fst << "\t Address: " << snd << std::endl;
+            delete snd; // delete the Node pointer
         }
     }
 
@@ -261,7 +256,6 @@ unsigned short Runtime::Project::getID() {
 
 void Runtime::Project::setID(unsigned short id) {
     this->PID = id;
-    return;
 }
 
 int Runtime::Project::run() {
