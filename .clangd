@@ -3,4 +3,4 @@ CompileFlags:
   PathMatch: .*\.hpp
 Style:
   QuotedHeaders: "src/.*"
-  AngledHeaders: ["/home/zachary/Documents/GitHub/ObjOrientCPP-PE/inc/.*", "./inc/.*"]
+  AngledHeaders: ["/home/zachary/Documents/GitHub/ObjOrientCPP-PE/inc/*", "./inc/*"]

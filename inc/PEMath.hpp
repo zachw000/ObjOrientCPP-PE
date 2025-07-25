@@ -41,13 +41,13 @@ namespace Math {
         Quaternion operator*(double scalar) const;
         friend Quaternion operator*(double scalar, const Quaternion& q);
 
-        double norm() const;
-        Quaternion normalized() const;
+        [[nodiscard]] double norm() const;
+        [[nodiscard]] Quaternion normalized() const;
 
-        double i_component() const;
-        double j_component() const;
-        double k_component() const;
-        double scalar_component() const;
+        [[nodiscard]] double i_component() const;
+        [[nodiscard]] double j_component() const;
+        [[nodiscard]] double k_component() const;
+        [[nodiscard]] double scalar_component() const;
 
         friend std::ostream& operator<<(std::ostream& os, const Quaternion& q);
     };

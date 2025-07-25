@@ -14,8 +14,9 @@ int main(int argc, char **argv) {
 	// with the doubly-linked list to store a hash map of the addresses of each node for access
 	// speed.
 	{
-	    std::unique_ptr<Runtime::Application> app =
-			std::make_unique<Runtime::Application>(argc, argv);
+		using namespace Runtime;
+	    std::unique_ptr<Application> app =
+			std::make_unique<Application>(argc, argv);
 		app->processCMDs();
 
 		try {

@@ -110,16 +110,21 @@ unsigned long long Math::PEMath::gcd(unsigned long long a, unsigned long long b)
     return 0; // Placeholder for GCD implementation
 }
 
+unsigned long long Math::PEMath::lcm(unsigned long long a, unsigned long long b)
+{
+    return 0;   // Placeholder for LCM implementation
+}
+
 // Quaternion implementation
 Math::Quaternion::Quaternion(double a, double b, double c, double d)
     : a(a), b(b), c(c), d(d) {}
 
 Math::Quaternion Math::Quaternion::operator+(const Quaternion& other) const {
-    return Quaternion(a + other.a, b + other.b, c + other.c, d + other.d);
+    return {a + other.a, b + other.b, c + other.c, d + other.d};
 }
 
 Math::Quaternion Math::Quaternion::operator-(const Quaternion& other) const {
-    return Quaternion(a - other.a, b - other.b, c - other.c, d - other.d);
+    return {a - other.a, b - other.b, c - other.c, d - other.d};
 }
 
 Math::Quaternion Math::Quaternion::operator*(const Quaternion& other) const {
@@ -127,14 +132,14 @@ Math::Quaternion Math::Quaternion::operator*(const Quaternion& other) const {
     double nb = a * other.b + b * other.a + c * other.d - d * other.c;
     double nc = a * other.c - b * other.d + c * other.a + d * other.b;
     double nd = a * other.d + b * other.c - c * other.b + d * other.a;
-    return Quaternion(na, nb, nc, nd);
+    return {na, nb, nc, nd};
 }
 
 Math::Quaternion Math::Quaternion::operator*(double scalar) const {
-    return Quaternion(a * scalar, b * scalar, c * scalar, d * scalar);
+    return {a * scalar, b * scalar, c * scalar, d * scalar};
 }
 
-Math::Quaternion operator*(double scalar, const Math::Quaternion& q) {
+Math::Quaternion operator*(const double scalar, const Math::Quaternion& q) {
     return q * scalar;
 }
 
@@ -145,9 +150,9 @@ double Math::Quaternion::norm() const {
 Math::Quaternion Math::Quaternion::normalized() const {
     double n = norm();
     if (n == 0) {
-        return Quaternion(0, 0, 0, 0); // Avoid division by zero
+        return {0, 0, 0, 0}; // Avoid division by zero
     }
-    return Quaternion(a / n, b / n, c / n, d / n);
+    return {a / n, b / n, c / n, d / n};
 }
 
 double Math::Quaternion::i_component() const { return b; }

@@ -1,9 +1,9 @@
+#pragma once
 #include <memory>
 #include <string_view>
 #include <string>
 #include <unordered_map>
 
-#pragma once
 
 #ifndef RUNTIME_MANAGER
 #define RUNTIME_MANAGER
@@ -14,13 +14,16 @@ namespace Runtime {
         //  Processes CMD line inputs
         int argc;
         char **argv;
-        unsigned short currentPID;
-        const static unsigned short maxPID = 0x4;
+        unsigned short currentPID{};
+        static constexpr unsigned short maxPID = 0x4;
     public:
         virtual int processCMDs() = 0;  // Returns integer exit code; Default = 0
-        Manager(int Argc, char **Argv) : argc(Argc), argv(Argv) {}
-        Manager() : argc(0), argv((char**)0) {}
-        ~Manager() {}
+        Manager(const int Argc, char **Argv) : argc(Argc), argv(Argv) {}
+        Manager() : argc(0), argv(static_cast<char**>(nullptr)), currentPID(0)
+        {
+        }
+
+        virtual ~Manager() = default;
 
         void selectPID(unsigned short  idSelect);
         int getArgc();
@@ -34,17 +37,17 @@ namespace Runtime {
         unsigned short PID;
         std::string p_name = "Default Project";
     public:
-        Project(int id) : PID(id) {}
+        explicit Project(const int id) : PID(id) {}
         Project() : PID(0) {}
         virtual ~Project();
         virtual int run();
-        virtual std::string_view getName() const {
+        [[nodiscard]] virtual std::string_view getName() const {
             return this->p_name;
         }
 
         void setID(unsigned short id);
 
-        unsigned short getID();
+        virtual unsigned short getID();
     };
 
     typedef struct Node {
@@ -78,7 +81,7 @@ namespace Runtime {
 
         Application(int Argc, char **Argv) : Manager(Argc, Argv) {};
         Application() : Manager() {}
-        virtual ~Application();
+        ~Application() override;
     };
 
 };
