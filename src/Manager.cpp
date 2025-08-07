@@ -2,7 +2,7 @@
 #include "../inc/ProjectList.hpp"
 #include <iostream>
 
-void Runtime::Manager::selectPID(unsigned short idSelect) {
+void Runtime::Manager::selectPID(const unsigned short idSelect) {
     this->currentPID = idSelect;
 }
 
@@ -17,19 +17,20 @@ char** Runtime::Manager::getArgV() const {
 }
 
 unsigned int Runtime::Application::processCMDs() {
-    const unsigned int argcount = this->getArgc();
-    char ** argdata = this->getArgV();
+    const unsigned int arg_count = this->getArgc();
+    char ** arg_data = this->getArgV();
 
-    if (argcount > 1) {
-        std::cout << "Multiple Arguments Detected" << std::endl << "Arg Count: " << argcount << std::endl;
+    if (arg_count > 1) {
+        std::cout << "Multiple Arguments Detected" << std::endl << "Arg Count: " << arg_count << std::endl;
         std::cout << "Arg Data: " << std::endl;
-        for (unsigned int i = 0; i < argcount; i++) {
-            std::cout << "Arg " << i << ": " << argdata[i] << std::endl;
+        for (unsigned int i = 0; i < arg_count; i++) {
+            std::cout << "Arg " << i << ": " << arg_data[i] << std::endl;
         }   
-        return argcount;
-    } else {
-        std::cout << "No Further Args Supplied" << std::endl;
+        return arg_count;
     }
+
+    std::cout << "No Further Args Supplied" << std::endl;
+
 
     return 0;
 }
@@ -83,6 +84,7 @@ void Runtime::Application::run() {
     // and the Nodes are found via project ID. This map will be used as the main traversal
     // method.
 
+    // TODO: Replace the below code with an application loop.
     if (this->getArgc() > 1) {
         // default to 2nd project
         unsigned short selectedPID = 2;
@@ -98,15 +100,15 @@ void Runtime::Application::run() {
 
     }
 
-void Runtime::Application::pushNode(Node* node) {
+void Runtime::Application::pushNode(Node* n_node) {
     // Adds node to the beginning of the linked list
     if (!this->ll_head) {
-        this->ll_head = node;
-        this->ll_tail = node;
+        this->ll_head = n_node;
+        this->ll_tail = n_node;
     } else {
-        node->n_pointer = this->ll_head;
-        this->ll_head->p_pointer = node;
-        this->ll_head = node;
+        n_node->n_pointer = this->ll_head;
+        this->ll_head->p_pointer = n_node;
+        this->ll_head = n_node;
     }
 }
 
@@ -114,7 +116,7 @@ void Runtime::Application::dequeueNode() {
     // Removes node from the end of the linked list
     if (!this->ll_head) return;
     if (!this->ll_tail) return;
-    Node* temp = this->ll_tail;
+    const Node* temp = this->ll_tail;
 
     this->ll_tail = this->ll_tail->p_pointer;
 
@@ -142,6 +144,16 @@ void Runtime::Application::removeNode(const Node* n_node) {
 
     // Delete the node from the map
     this->addrs.erase(map_id);
+}
+
+void Runtime::Application::insertNode(int id, Node* n_node) {
+    std::cout << id << std::endl;
+    std::cout << n_node->data->getID() << std::endl;
+}
+
+Runtime::Project* Runtime::Application::getProjectByID(unsigned short id)
+{
+    return this->checkKey(id)->data.get();
 }
 
 void Runtime::Application::removeNode(const int id) {
@@ -245,7 +257,7 @@ unsigned short Runtime::Project::getID() {
     return this->PID;
 }
 
-void Runtime::Project::setID(unsigned short id) {
+void Runtime::Project::setID(const unsigned short id) {
     this->PID = id;
 }
 

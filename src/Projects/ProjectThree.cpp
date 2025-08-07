@@ -4,7 +4,7 @@
 int Projects::ProjectThree::run() {
     std::cout <<"Largest Prime Factor (Problem 3)" << std::endl;
 
-    unsigned short ID = this->getID();
+    const unsigned short ID = this->getID();
     std::cout << "Project ID: " << ID << std::endl;
 
     return 0;

@@ -11,14 +11,14 @@ namespace Projects {
         std::string_view p_name = std::string_view("The Smallest Multiple");
     public:
         ProjectFive() : PID(5) {};
-        ProjectFive(unsigned short id) : PID(id) {};
-        ~ProjectFive();
-        virtual int run() override;
-        std::string_view getName() const override {
+        explicit ProjectFive(const unsigned short id) : PID(id) {};
+        ~ProjectFive() override;
+        int run() override;
+        [[nodiscard]] std::string_view getName() const override {
             return this->p_name;
         }
 
-        unsigned short getID();
+        unsigned short getID() override;
     };
 };
 

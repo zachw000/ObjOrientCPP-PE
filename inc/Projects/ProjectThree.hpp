@@ -11,14 +11,14 @@ namespace Projects {
         std::string_view p_name = std::string_view("Largest Prime Factor");
     public:
         ProjectThree() : PID(3) {};
-        ProjectThree(unsigned short id) : PID(id) {};
-        ~ProjectThree();
-        virtual int run() override;
-        std::string_view getName() const override {
+        explicit ProjectThree(const unsigned short id) : PID(id) {};
+        ~ProjectThree() override;
+        int run() override;
+        [[nodiscard]] std::string_view getName() const override {
             return this->p_name;
         }
 
-        unsigned short getID();
+        unsigned short getID() override;
     };
 };
 

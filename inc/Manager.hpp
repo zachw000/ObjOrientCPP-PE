@@ -51,13 +51,13 @@ namespace Runtime {
     };
 
     typedef struct Node {
-        Node* n_pointer;
-        Node* p_pointer;
+        Node* n_pointer = nullptr;
+        Node* p_pointer = nullptr;
         std::unique_ptr<Runtime::Project> data;
     } Node;
     // Linked List Node Structure
 
-    class Application : private Manager {
+    class Application final : private Manager {
     private:
         Node* ll_head = nullptr;
         Node* ll_tail = nullptr;
@@ -71,15 +71,15 @@ namespace Runtime {
         void popNode(); // Pops the first node from the beginning of the linked list
         void insertNode(Node* n_node, Node* prev_node); // inserts node after prev_node
         void removeNode(const Node* n_node); // removes node from the linked list
-        void insertNode(int id, Node* n_node); // inserts node after node with id
+        static void insertNode(int id, Node* n_node); // inserts node after node with id
         void removeNode(int id); // removes node from the linked list by id
     public:
-        Project* getProjectByID(size_t id);
+        Project* getProjectByID(unsigned short id);
 
         unsigned int processCMDs() override;
         void run() override;
 
-        Application(int Argc, char **Argv) : Manager(Argc, Argv) {};
+        Application(const int Argc, char **Argv) : Manager(Argc, Argv) {};
         Application() : Manager() {}
         ~Application() override;
     };

@@ -1,14 +1,13 @@
 #include "../../inc/Projects/ProjectOne.hpp"
 #include "../../inc/PEMath.hpp"
 #include <iostream>
-#include <cmath>
 
 int Projects::ProjectOne::run() {
     using namespace Math;
 
     std::cout << "Multiples of 3 and 5" << std::endl;
 
-    unsigned short ID = this->getID();
+    const unsigned short ID = this->getID();
     std::cout << "Project ID: " << ID << std::endl;
 
     std::cout << "Multiples: " << this->multiples[0] << ", " << this->multiples[1] << std::endl;

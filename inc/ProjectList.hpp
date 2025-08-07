@@ -18,7 +18,7 @@ namespace Projects {
 
         ~ProjectList();
         // Static method to register a project with a unique ID
-        static bool registerProject(int id, std::unique_ptr<Runtime::Project> project) {
+        static bool registerProject(const int id, std::unique_ptr<Runtime::Project> project) {
             if (projectList.find(id) != projectList.end()) {
                 return false; // Project ID already exists
             }

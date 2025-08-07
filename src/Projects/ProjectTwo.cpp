@@ -24,7 +24,7 @@ int Projects::ProjectTwo::run() {
 
     std::cout << "Calculating the sum of even Fibonacci numbers up to " 
               << this->limit << "..." << std::endl;
-    unsigned long long sum = Math::PEMath::evenFibonacciSum(this->limit);
+    const unsigned long long sum = Math::PEMath::evenFibonacciSum(this->limit);
     std::cout << "Sum of even Fibonacci numbers: " << sum << std::endl;
     std::cout << "Project Name: " << this->getName() << std::endl;
     std::cout << "Project ID: " << this->getID() << std::endl;
