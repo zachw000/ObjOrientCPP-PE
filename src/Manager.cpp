@@ -6,18 +6,18 @@ void Runtime::Manager::selectPID(unsigned short idSelect) {
     this->currentPID = idSelect;
 }
 
-int Runtime::Manager::getArgc() {
+int Runtime::Manager::getArgc() const {
     return this->argc;
 }
 
-char** Runtime::Manager::getArgV() {
+char** Runtime::Manager::getArgV() const {
     // TODO: Tokenize and parse argv
 
     return this->argv;
 }
 
-int Runtime::Application::processCMDs() {
-    unsigned int argcount = this->getArgc();
+unsigned int Runtime::Application::processCMDs() {
+    const unsigned int argcount = this->getArgc();
     char ** argdata = this->getArgV();
 
     if (argcount > 1) {
@@ -37,20 +37,16 @@ int Runtime::Application::processCMDs() {
 void Runtime::Application::run() {
     // Implement Main Application Here
     // Add new ProjectList
-    std::unique_ptr<Projects::ProjectList> pl = std::make_unique<Projects::ProjectList>();
+    auto pl = std::make_unique<Projects::ProjectList>();
 
-    int projectCount = pl->getProjectCount();
-
+    const short projectCount = Projects::ProjectList::getProjectCount();
     const short PID_L = projectCount;
-    unsigned short selectedPID = 2;
 
     // Implement Linked List Containing Project Data
-    Node* proj_ll = new Node;
+    auto proj_ll = new Node;
     Node* c_pointer = proj_ll;
 
-    proj_ll->data = pl->getProject(0);
-
-    const Node* proj_list_head = proj_ll;
+    proj_ll->data = Projects::ProjectList::getProject(0);
 
     this->ll_head = proj_ll;
 
@@ -62,9 +58,9 @@ void Runtime::Application::run() {
             proj_ll->p_pointer = nullptr;
         }
         // set n_pointer
-        if ((unsigned short)i != (PID_L - 1)) {
+        if (static_cast<unsigned short>(i) != (PID_L - 1)) {
             proj_ll->n_pointer = new Node;
-            proj_ll->n_pointer->data = pl->getProject(i + 1);
+            proj_ll->n_pointer->data = Projects::ProjectList::getProject(i + 1);
             proj_ll->n_pointer->p_pointer = c_pointer;
 
             size++;
@@ -81,9 +77,6 @@ void Runtime::Application::run() {
 
     this->ll_tail = proj_ll;
 
-    // reset linked list pointer
-    proj_ll = (Node*)proj_list_head;
-
     // an unordered_map is important to use because this will speed up data access by
     // pointing directly to each address, and an unordered map does not need to be sorted
     // which is also important because nodes may be inserted or deleted at any point
@@ -91,10 +84,11 @@ void Runtime::Application::run() {
     // method.
 
     if (this->getArgc() > 1) {
+        // default to 2nd project
+        unsigned short selectedPID = 2;
         // get 2nd argument
         const unsigned short n_PID = static_cast<unsigned short>(std::stoi(this->getArgV()[1]));
-        // default to last project
-        selectedPID = n_PID;
+        selectedPID = n_PID > 0 && n_PID < maxPID ? n_PID : selectedPID;
         std::cout << "In Branch." << std::endl;
         if (const Node* id_result = this->checkKey(selectedPID)) {
             std::cout << "Current Project ID is: " << id_result->data->getID() << std::endl;
@@ -130,11 +124,8 @@ void Runtime::Application::dequeueNode() {
     delete temp;
 }
 
-void Runtime::Application::removeNode(Node* n_node) {
-    int map_id = n_node->data->getID();
-    if (!n_node) {
-        return;
-    }
+void Runtime::Application::removeNode(const Node* n_node) {
+    const int map_id = n_node->data->getID();
     if(n_node == this->ll_head) {
         this->ll_head = n_node->n_pointer;
     }
@@ -154,7 +145,7 @@ void Runtime::Application::removeNode(Node* n_node) {
 }
 
 void Runtime::Application::removeNode(const int id) {
-    if(Node* node = this->checkKey(id); node != nullptr) {
+    if(const Node* node = this->checkKey(id); node != nullptr) {
         this->removeNode(node);
     }
 }
@@ -229,7 +220,7 @@ Runtime::Application::~Application() {
 
         current_node = next_node;
     }
-    //std::cout << "ALL NODES DELETED" << std::endl;
+    // All nodes deleted
     this->ll_head = nullptr;
     this->ll_tail = nullptr;
 
@@ -263,6 +254,6 @@ int Runtime::Project::run() {
 }
 
 Runtime::Project::~Project() {
-    //std::cout << "Destructor called!" << std::endl;
+    // Reset Project ID to 0
     this->PID = 0;
 }
