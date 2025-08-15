@@ -19,7 +19,7 @@
  * 
  */
 
-int Projects::ProjectTwo::run() {
+int Projects::ProjectTwo::run() noexcept {
     std::cout << "Even Fibonacci Numbers (linker test 2)" << std::endl;
 
     std::cout << "Calculating the sum of even Fibonacci numbers up to " 
@@ -36,6 +36,4 @@ unsigned short Projects::ProjectTwo::getID() {
     return this->PID;
 }
 
-Projects::ProjectTwo::~ProjectTwo() {
-    return;
-}
+Projects::ProjectTwo::~ProjectTwo() = default;

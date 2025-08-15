@@ -13,7 +13,7 @@ namespace Projects {
         ProjectTwo() : PID(2) {};
         explicit ProjectTwo(const unsigned short id) : PID(id) {};
         ~ProjectTwo() override;
-        int run() override;
+        int run() noexcept override;
 
         [[nodiscard]] std::string_view getName() const override {
             return this->p_name;

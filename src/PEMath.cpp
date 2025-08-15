@@ -76,7 +76,7 @@ unsigned long long Math::PEMath::power(const unsigned int base, const unsigned i
     return result;
 }
 
-std::vector<int> primeFactors(unsigned long long n) {
+std::vector<int> Math::PEMath::primeFactors(unsigned long long n) {
     std::vector<int> factors;
 
     // Check for number of 2s that divide n
@@ -102,16 +102,18 @@ std::vector<int> primeFactors(unsigned long long n) {
     return factors;
 }
 
+// TODO: Implement factorial calculator (n!=n*(n-1)*...*1) [(galois or gamma?)]
 unsigned long long Math::PEMath::factorial(unsigned int n) {
     return 0; // Placeholder for factorial implementation
 }
 
+// TODO: Implement GCD (Greatest Common Denominator)
 unsigned long long Math::PEMath::gcd(unsigned long long a, unsigned long long b) {
     return 0; // Placeholder for GCD implementation
 }
 
-unsigned long long Math::PEMath::lcm(unsigned long long a, unsigned long long b)
-{
+// TODO: Implement LCM (Least Common Multiple)
+unsigned long long Math::PEMath::lcm(unsigned long long a, unsigned long long b) {
     return 0;   // Placeholder for LCM implementation
 }
 

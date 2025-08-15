@@ -90,7 +90,7 @@ void Runtime::Application::run() {
         unsigned short selectedPID = 2;
         // get 2nd argument
         const unsigned short n_PID = static_cast<unsigned short>(std::stoi(this->getArgV()[1]));
-        selectedPID = n_PID > 0 && n_PID < maxPID ? n_PID : selectedPID;
+        selectedPID = n_PID > 0 && n_PID <= PID_L ? n_PID : selectedPID;
         std::cout << "In Branch." << std::endl;
         if (const Node* id_result = this->checkKey(selectedPID)) {
             std::cout << "Current Project ID is: " << id_result->data->getID() << std::endl;
@@ -159,6 +159,24 @@ Runtime::Project* Runtime::Application::getProjectByID(unsigned short id)
 void Runtime::Application::removeNode(const int id) {
     if(const Node* node = this->checkKey(id); node != nullptr) {
         this->removeNode(node);
+    }
+}
+
+void Runtime::Application::validateMap() {
+    // check if addrs is not empty before clearing
+    // NOTE: Not expected to execute during normal operation
+    if (!this->addrs.empty()) {
+        printf("\x1B[31mAssertion(s) Failed, Node(s) detected outside LL\033[0m\t\t\n");
+        std::cout << "Clearing addrs map..." << std::endl;
+
+        for (auto& [fst, snd] : this->addrs) {
+            std::cout << "Deleting Node with ID: " << fst << "\t Address: " << snd << std::endl;
+            delete snd; // delete the Node pointer
+        }
+
+        this->addrs.clear();
+
+        if (this->addrs.empty()) this->m_size = addrs.size();
     }
 }
 
@@ -235,17 +253,9 @@ Runtime::Application::~Application() {
     // All nodes deleted
     this->ll_head = nullptr;
     this->ll_tail = nullptr;
+    this->validateMap();
 
-    // check if addrs is not empty before clearing
-    if (!this->addrs.empty()) {
-        std::cout << "Clearing addrs map..." << std::endl;
-
-        for (auto& [fst, snd] : this->addrs) {
-            std::cout << "Deleting Node with ID: " << fst << "\t Address: " << snd << std::endl;
-            delete snd; // delete the Node pointer
-        }
-    }
-
+    printf("\x1B[32mNodes cleared.\033[0m\t\t\n");
 
     this->addrs.clear();
 

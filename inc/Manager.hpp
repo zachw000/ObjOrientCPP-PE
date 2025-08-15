@@ -14,8 +14,8 @@ namespace Runtime {
         //  Processes CMD line inputs
         int argc;
         char **argv;
+        static constexpr unsigned short maxPID = 127;
         unsigned short currentPID{};
-        static constexpr unsigned short maxPID = 0x4;
     public:
         virtual unsigned int processCMDs() = 0;  // Returns integer exit code; Default = 0
         Manager(const int Argc, char **Argv) : argc(Argc), argv(Argv) {}
@@ -73,6 +73,7 @@ namespace Runtime {
         void removeNode(const Node* n_node); // removes node from the linked list
         static void insertNode(int id, Node* n_node); // inserts node after node with id
         void removeNode(int id); // removes node from the linked list by id
+        void validateMap();
     public:
         Project* getProjectByID(unsigned short id);
 
