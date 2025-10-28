@@ -97,8 +97,7 @@ void Runtime::Application::run() {
             id_result->data->run();
         }
     }
-
-    }
+}
 
 void Runtime::Application::pushNode(Node* n_node) {
     // Adds node to the beginning of the linked list

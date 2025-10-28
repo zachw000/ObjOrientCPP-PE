@@ -50,11 +50,11 @@ namespace Runtime {
         virtual unsigned short getID();
     };
 
-    typedef struct Node {
+    struct Node {
         Node* n_pointer = nullptr;
         Node* p_pointer = nullptr;
         std::unique_ptr<Runtime::Project> data;
-    } Node;
+    };
     // Linked List Node Structure
 
     class Application final : private Manager {

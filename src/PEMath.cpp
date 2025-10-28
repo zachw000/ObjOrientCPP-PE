@@ -86,7 +86,8 @@ std::vector<int> Math::PEMath::primeFactors(unsigned long long n) {
     }
 
     // n must be odd at this point, so we can skip even numbers
-    for (unsigned long long i = 3; i <= std::sqrt(n); i += 2) {
+    int limit = static_cast<int>(std::sqrt(n)) + 1; // Only go up to the square root of n
+    for (unsigned long long i = 3; i <= limit; i += 2) {
         while (n % i == 0) {
             factors.push_back(i);
             n /= i;
