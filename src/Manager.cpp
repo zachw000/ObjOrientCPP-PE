@@ -1,6 +1,7 @@
 #include "../inc/Manager.hpp"
 #include "../inc/ProjectList.hpp"
 #include <iostream>
+#include "Manager.hpp"
 
 void Runtime::Manager::selectPID(const unsigned short idSelect) {
     this->currentPID = idSelect;
@@ -277,4 +278,9 @@ int Runtime::Project::run() {
 Runtime::Project::~Project() {
     // Reset Project ID to 0
     this->PID = 0;
+}
+
+Runtime::Node::~Node()
+{
+
 }

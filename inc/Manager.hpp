@@ -50,7 +50,7 @@ namespace Runtime {
         virtual unsigned short getID();
     };
 
-    struct Node {
+    typedef struct Node {
         Node* n_pointer = nullptr;
         Node* p_pointer = nullptr;
         std::unique_ptr<Runtime::Project> data;
