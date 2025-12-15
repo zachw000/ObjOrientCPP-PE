@@ -23,10 +23,11 @@ namespace Math {
         static unsigned long long gcd(unsigned long long a, unsigned long long b);
         static unsigned long long lcm(unsigned long long a, unsigned long long b);
         static unsigned long long power(unsigned int base, unsigned int exponent);
-        static std::vector<int> primeFactors(unsigned long long n);
+        static std::vector<int> primeFactors(unsigned long n);
         static unsigned long long fibonacciSum(unsigned int limit);
         static size_t sumMultiple(int multiple, int limit);
         static size_t sumMultiples(int multiples[2], int limit);
+        static bool checkPalindrome(int n);
     };
 
     class Quaternion {

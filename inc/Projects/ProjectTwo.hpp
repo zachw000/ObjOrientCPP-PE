@@ -12,14 +12,14 @@ namespace Projects {
     public:
         ProjectTwo() : PID(2) {};
         ProjectTwo(unsigned short id) : PID(id) {};
-        ~ProjectTwo();
+        ~ProjectTwo() override;
         virtual int run() override;
 
         std::string_view getName() const override {
             return this->p_name;
         }
 
-        unsigned short getID();
+        unsigned short getID() override;
     };
 }
 #endif // PROJECT_TWO_HPP

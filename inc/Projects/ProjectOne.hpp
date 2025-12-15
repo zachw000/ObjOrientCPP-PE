@@ -15,14 +15,14 @@ namespace Projects {
         void setMultiples(int newMultiples[2]);
     public:
         ProjectOne() : PID(1) {};
-        ProjectOne(unsigned short id) : PID(id) {};
-        ~ProjectOne();
+        explicit ProjectOne(const unsigned short id) : PID(id) {};
+        ~ProjectOne() override;
         virtual int run() override;
 
         std::string_view getName() const override {
             return this->p_name;
         }
 
-        unsigned short getID();
+        unsigned short getID() override;
     };
 };

@@ -11,14 +11,14 @@ namespace Projects {
         std::string_view p_name = std::string_view("Largest Palindrome");
     public:
         ProjectFour() : PID(4) {};
-        ProjectFour(unsigned short id) : PID(id) {};
-        ~ProjectFour();
+        explicit ProjectFour(const unsigned short id) : PID(id) {};
+        ~ProjectFour() override;
         virtual int run() override;
         std::string_view getName() const override {
             return this->p_name;
         }
 
-        unsigned short getID();
+        unsigned short getID() override;
     };
 };
 

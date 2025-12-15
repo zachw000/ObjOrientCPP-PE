@@ -76,7 +76,7 @@ unsigned long long Math::PEMath::power(unsigned int base, unsigned int exponent)
     return result;
 }
 
-std::vector<int> primeFactors(unsigned long long n) {
+std::vector<int> Math::PEMath::primeFactors(unsigned long n) {
     std::vector<int> factors;
 
     // Check for number of 2s that divide n
@@ -164,4 +164,15 @@ std::ostream& Math::operator<<(std::ostream& os, const Math::Quaternion& q) {
     os << q.scalar_component() << "+" << q.i_component() << "i+"
        << q.j_component() << "j+" << q.k_component() << "k";
     return os;
+}
+
+bool Math::PEMath::checkPalindrome(int n) {
+    int reverse = 0, original = n, pow = log(n) / log(10);
+    while (n > 0) {
+        reverse += (n % 10) * power(10, pow);
+        n = ((n - (n % 10)) / 10);
+        pow--;
+    }
+    
+    return reverse == original;
 }

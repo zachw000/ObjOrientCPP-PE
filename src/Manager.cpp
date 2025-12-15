@@ -254,6 +254,10 @@ unsigned short Runtime::Project::getID() {
     return this->PID;
 }
 
+Runtime::Node::~Node() {
+    this->data.reset();
+}
+
 void Runtime::Project::setID(unsigned short id) {
     this->PID = id;
 }
@@ -263,6 +267,6 @@ int Runtime::Project::run() {
 }
 
 Runtime::Project::~Project() {
-    //std::cout << "Destructor called!" << std::endl;
+    std::cout << "Destructor called!" << std::endl;
     this->PID = 0;
 }

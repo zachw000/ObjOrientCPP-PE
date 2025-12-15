@@ -54,6 +54,7 @@ namespace Runtime {
         Node* n_pointer;
         Node* p_pointer;
         std::unique_ptr<Runtime::Project> data;
+        ~Node();
     } Node;
     // Linked List Node Structure
 

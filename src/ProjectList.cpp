@@ -1,4 +1,5 @@
 #include "../inc/ProjectList.hpp"
+#include <dlfcn.h>
 
 void Projects::ProjectList::addProject(int id, std::unique_ptr<Runtime::Project> project) {
     this->projectList[id] = std::move(project);
@@ -34,6 +35,8 @@ Projects::ProjectList::ProjectList() {
     this->projectList[3]->setID(4);
     this->projectList[4]->setID(5);
     this->projectList[5]->setID(6);
+    dlopen("./libmanager.dylib", RTLD_LAZY);
+
 }
 Projects::ProjectList::~ProjectList() {
     this->projectList.clear();

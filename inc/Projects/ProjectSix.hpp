@@ -12,15 +12,15 @@ namespace Projects {
         std::string_view p_name = std::string_view("Project Six Example");
     public:
         ProjectSix() : PID(6) {};
-        ProjectSix(unsigned short id) : PID(id) {};
-        ~ProjectSix();
+        explicit ProjectSix(const unsigned short id) : PID(id) {};
+        ~ProjectSix() override;
         virtual int run() override;
 
         std::string_view getName() const override {
             return this->p_name;
         }
 
-        unsigned short getID();
+        unsigned short getID() override;
     };
 }
 #endif // PROJECT_SIX_HPP

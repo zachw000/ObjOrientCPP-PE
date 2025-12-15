@@ -1,6 +1,6 @@
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++17 -fPIC -Os
-CXXFLAGS2 = -Wl,-rpath=lib/ -L ./bin -lmanager -lm -I inc/
+CXXFLAGS = -Wall -Wextra -std=c++17 -g
+CXXFLAGS2 = -L ./bin -lmanager -lm -I inc/
 SRCDIR1 = src
 SRCDIR2 = src/Projects
 INCDIR = inc/Projects
@@ -11,8 +11,11 @@ SOURCES2 = $(wildcard $(SRCDIR2)/*.cpp)
 SOURCES = $(SOURCES1) $(SOURCES2)
 OBJECTS = $(SOURCES1:$(SRCDIR1)/%.cpp=$(OBJDIR)/%.o)
 OBJECTS += $(SOURCES2:$(SRCDIR2)/%.cpp=$(OBJDIR)/%.o)
-LIBRARY = $(BINDIR)/libmanager.so
+LIBRARY = $(BINDIR)/libmanager.dylib
 EXECUTABLE = $(BINDIR)/Manager
+
+all: $(EXECUTABLE)
+	@echo "Making All"
 
 $(EXECUTABLE): $(LIBRARY)
 	@mkdir -p $(BINDIR)
@@ -20,9 +23,11 @@ $(EXECUTABLE): $(LIBRARY)
 
 $(LIBRARY): $(OBJECTS)
 	@mkdir -p $(BINDIR)
-	$(CXX) $(CXXFLAGS) -shared -o $@ $^
+	@mkdir -p $(BINDIR)/bin
+	$(CXX) $(CXXFLAGS) -dynamiclib -o $@ $^
 	@mkdir -p lib
-	@cp $(BINDIR)/libmanager.so lib/
+	@cp $(BINDIR)/libmanager.dylib lib/
+	@cp $(BINDIR)/libmanager.dylib $(BINDIR)/bin
 	@rm -rf $(OBJDIR)
 
 $(OBJDIR)/%.o: $(SRCDIR1)/%.cpp
