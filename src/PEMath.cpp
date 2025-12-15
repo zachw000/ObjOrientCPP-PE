@@ -5,7 +5,7 @@
 #include <vector>
 #include <string_view>
 
-size_t Math::PEMath::sumMultiple(int multiple, int limit) {
+size_t Math::PEMath::sumMultiple(const int multiple, const int limit) {
     size_t sum = 0;
     // Implement Series Sum
     sum = (floor((double)(limit - 1)/(double)multiple) / 2) *
@@ -18,14 +18,14 @@ size_t Math::PEMath::sumMultiple(int multiple, int limit) {
 /// @param multiples 
 /// @param limit 
 /// @return 
-size_t Math::PEMath::sumMultiples(int multiples[2], int limit) {
+size_t Math::PEMath::sumMultiples(int multiples[2], const int limit) {
     return sumMultiple(multiples[0], limit) +
         sumMultiple(multiples[1], limit) -
         sumMultiple(multiples[0] * multiples[1], limit);
 }
 
 // Returns the nth Fibonacci number using Binet's formula
-unsigned long long Math::PEMath::fibonacci(unsigned int n) {
+unsigned long long Math::PEMath::fibonacci(const unsigned int n) {
     static const double sqrt5 = std::sqrt(5.0);
     static const double phi = (1.0 + sqrt5) / 2.0;
     static const double psi = (1.0 - sqrt5) / 2.0;
@@ -34,7 +34,7 @@ unsigned long long Math::PEMath::fibonacci(unsigned int n) {
     );
 }
 
-unsigned long long Math::PEMath::fibonacciSum(unsigned int limit) {
+unsigned long long Math::PEMath::fibonacciSum(const unsigned int limit) {
     unsigned long long sum = 0;
     unsigned int n = 0;
     unsigned long long fib = fibonacci(n);
@@ -48,7 +48,7 @@ unsigned long long Math::PEMath::fibonacciSum(unsigned int limit) {
     return sum;
 }
 
-unsigned long long Math::PEMath::evenFibonacciSum(unsigned int limit) {
+unsigned long long Math::PEMath::evenFibonacciSum(const unsigned int limit) {
     unsigned long long sum = 0;
     unsigned int n = 3;
     unsigned long long fib = fibonacci(n);
@@ -68,7 +68,7 @@ unsigned long long Math::PEMath::evenFibonacciSum(unsigned int limit) {
     return sum;
 }
 
-unsigned long long Math::PEMath::power(unsigned int base, unsigned int exponent) {
+unsigned long long Math::PEMath::power(const unsigned int base, const unsigned int exponent) {
     unsigned long long result = 1;
     for (unsigned int i = 0; i < exponent; ++i) {
         result *= base;
@@ -86,7 +86,8 @@ std::vector<int> Math::PEMath::primeFactors(unsigned long n) {
     }
 
     // n must be odd at this point, so we can skip even numbers
-    for (unsigned long long i = 3; i <= std::sqrt(n); i += 2) {
+    int limit = static_cast<int>(std::sqrt(n)) + 1; // Only go up to the square root of n
+    for (unsigned long long i = 3; i <= limit; i += 2) {
         while (n % i == 0) {
             factors.push_back(i);
             n /= i;
@@ -102,21 +103,23 @@ std::vector<int> Math::PEMath::primeFactors(unsigned long n) {
     return factors;
 }
 
+// TODO: Implement factorial calculator (n!=n*(n-1)*...*1) [(galois or gamma?)]
 unsigned long long Math::PEMath::factorial(unsigned int n) {
     return 0; // Placeholder for factorial implementation
 }
 
+// TODO: Implement GCD (Greatest Common Denominator)
 unsigned long long Math::PEMath::gcd(unsigned long long a, unsigned long long b) {
     return 0; // Placeholder for GCD implementation
 }
 
-unsigned long long Math::PEMath::lcm(unsigned long long a, unsigned long long b)
-{
+// TODO: Implement LCM (Least Common Multiple)
+unsigned long long Math::PEMath::lcm(unsigned long long a, unsigned long long b) {
     return 0;   // Placeholder for LCM implementation
 }
 
 // Quaternion implementation
-Math::Quaternion::Quaternion(double a, double b, double c, double d)
+Math::Quaternion::Quaternion(const double a, const double b, const double c, const double d)
     : a(a), b(b), c(c), d(d) {}
 
 Math::Quaternion Math::Quaternion::operator+(const Quaternion& other) const {
@@ -135,7 +138,7 @@ Math::Quaternion Math::Quaternion::operator*(const Quaternion& other) const {
     return {na, nb, nc, nd};
 }
 
-Math::Quaternion Math::Quaternion::operator*(double scalar) const {
+Math::Quaternion Math::Quaternion::operator*(const double scalar) const {
     return {a * scalar, b * scalar, c * scalar, d * scalar};
 }
 
@@ -148,7 +151,7 @@ double Math::Quaternion::norm() const {
 }
 
 Math::Quaternion Math::Quaternion::normalized() const {
-    double n = norm();
+    const double n = norm();
     if (n == 0) {
         return {0, 0, 0, 0}; // Avoid division by zero
     }

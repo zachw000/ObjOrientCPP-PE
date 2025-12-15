@@ -18,19 +18,19 @@ namespace Projects {
 
         ~ProjectList();
         // Static method to register a project with a unique ID
-        static bool registerProject(int id, std::unique_ptr<Runtime::Project> project) {
+        static bool registerProject(const int id, std::unique_ptr<Runtime::Project> project) {
             if (projectList.find(id) != projectList.end()) {
                 return false; // Project ID already exists
             }
             projectList[id] = std::move(project);
             return true;
         }
-        
-        void addProject(int id, std::unique_ptr<Runtime::Project> project);
-        void removeProject(int id);
-        void updateProject(int id, std::unique_ptr<Runtime::Project> project);
-        int getProjectCount();
-        std::unique_ptr<Runtime::Project> getProject(int id);
+
+        static void addProject(int id, std::unique_ptr<Runtime::Project> project);
+        static void removeProject(int id);
+        static void updateProject(int id, std::unique_ptr<Runtime::Project> project);
+        static short getProjectCount() ;
+        static std::unique_ptr<Runtime::Project> getProject(int id);
     };
 };
 #endif

@@ -13,8 +13,8 @@ namespace Projects {
         ProjectFour() : PID(4) {};
         explicit ProjectFour(const unsigned short id) : PID(id) {};
         ~ProjectFour() override;
-        virtual int run() override;
-        std::string_view getName() const override {
+        int run() override;
+        [[nodiscard]] std::string_view getName() const override {
             return this->p_name;
         }
 

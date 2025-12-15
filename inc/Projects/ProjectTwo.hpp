@@ -15,10 +15,11 @@ namespace Projects {
         ~ProjectTwo() override;
         virtual int run() override;
 
-        std::string_view getName() const override {
+        [[nodiscard]] std::string_view getName() const override {
             return this->p_name;
         }
 
+        unsigned short getID() override;
         unsigned short getID() override;
     };
 }

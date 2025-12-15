@@ -22,6 +22,7 @@ namespace Projects {
         }
 
         unsigned short getID() override;
+        unsigned short getID() override;
     };
 };
 
