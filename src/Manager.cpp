@@ -17,6 +17,17 @@ char** Runtime::Manager::getArgV() const {
     return this->argv;
 }
 
+void Runtime::Application::setProject(unsigned short PID) {
+    this->selectPID(PID);
+    this->checkKey(PID)->data->run();
+    return;
+}
+
+void Runtime::Application::executeProject(std::unique_ptr<Node> proj_addrs) {
+    proj_addrs->data->run();
+    return;
+}
+
 unsigned int Runtime::Application::processCMDs() {
     const unsigned int arg_count = this->getArgc();
     char ** arg_data = this->getArgV();

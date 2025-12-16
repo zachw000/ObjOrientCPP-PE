@@ -75,11 +75,13 @@ namespace Runtime {
         static void insertNode(int id, Node* n_node); // inserts node after node with id
         void removeNode(int id); // removes node from the linked list by id
         void validateMap();
+        void executeProject(std::unique_ptr<Node> proj_addrs);
     public:
         Project* getProjectByID(unsigned short id);
 
         unsigned int processCMDs() override;
         void run() override;
+        void setProject(unsigned short PID);
 
         Application(const int Argc, char **Argv) : Manager(Argc, Argv) {};
         Application() : Manager() {}

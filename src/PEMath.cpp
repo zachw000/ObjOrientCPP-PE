@@ -170,9 +170,9 @@ std::ostream& Math::operator<<(std::ostream& os, const Math::Quaternion& q) {
 }
 
 bool Math::PEMath::checkPalindrome(int n) {
-    int reverse = 0, original = n, pow = log(n) / log(10);
+    int reverse = 0, original = n, pow = std::log10(n);
     while (n > 0) {
-        reverse += (n % 10) * power(10, pow);
+        reverse += (n % 10) * std::pow(10, pow);
         n = ((n - (n % 10)) / 10);
         pow--;
     }

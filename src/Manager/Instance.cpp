@@ -22,12 +22,27 @@ int main(int argc, char **argv) {
         app->processCMDs();
 
         try {
+            bool running = true;
             app->run();
+            while (running) {
+                std::cout << "Process Finished. Execute another? Enter a project number 1-6: " << std::endl;
+                std::string proj;
+                std::cin >> proj;
+                if (std::stoi(proj) < 1 || std::stoi(proj) > 6) running = false;
+                std::cout << "Selecting Project #" << proj << std::endl;
+                std::cout << "Continuing. . ." << std::endl;
+                unsigned short PID = std::stoi(proj);
+                app->setProject(PID);
+            }
             RET_CODE = app ? 0 : 1;
             std::cout << "Application Created Successfully" << std::endl;
         } catch (std::bad_alloc &e) {
             std::cerr << "Insufficient Memory" << e.what() << std::endl;
             RET_CODE = 2;
+        } catch (std::invalid_argument &e) {
+            std::cerr << "Quitting Application. . ." << std::endl;
+        } catch (std::out_of_range &e) {
+            std::cerr << "Quitting Application. . ." << std::endl;
         } catch (std::exception &e) {
             std::cerr << "Unknown Runtime Exception: " << e.what() <<
                 std::endl << &e << std::endl;
@@ -43,7 +58,7 @@ int main(int argc, char **argv) {
         std::cout << "Done." << std::endl;
     }	// end of scope
 
-    std::cout << "Application ran for " << static_cast<float>(clock() - timer_start) / CLOCKS_PER_SEC << " second(s)!"
+    std::cout << "Calculation ran for " << static_cast<float>(clock() - timer_start) / CLOCKS_PER_SEC << " second(s)!"
         << std::endl;
 
     return RET_CODE;
