@@ -19,7 +19,9 @@ char** Runtime::Manager::getArgV() const {
 
 void Runtime::Application::setProject(unsigned short PID) {
     this->selectPID(PID);
-    this->checkKey(PID)->data->run();
+    Node* proj = this->checkKey(PID);
+    if (!proj) return;
+    proj->data->run();
     return;
 }
 
