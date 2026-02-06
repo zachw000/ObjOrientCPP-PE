@@ -1,6 +1,7 @@
 // filepath: /Users/mcuser/Documents/GitHub/ObjOrientCPP-PE/inc/Projects/ProjectSix.hpp
 #pragma once
 #include "../Manager.hpp"
+#include "../PEMath.hpp"
 #ifndef PROJECT_SIX_HPP
 #define PROJECT_SIX_HPP
 
@@ -8,8 +9,8 @@ namespace Projects {
     class ProjectSix final : public Runtime::Project {
     private:
         unsigned short PID;
-        const unsigned int limit = 100000; // Example limit for Project Six
-        std::string_view p_name = std::string_view("Project Six Example");
+        const unsigned int limit = 100; // Example limit for Project Six
+        std::string_view p_name = std::string_view("Sum Square Difference");
     public:
         ProjectSix() : PID(6) {};
         explicit ProjectSix(const unsigned short id) : PID(id) {};

@@ -1,8 +1,8 @@
 //
 // Created by Zachary Waldron on 9/28/25.
 //
-#include <Manager.hpp>
 #include <iostream>
+#include <Manager.hpp>
 /**
  * An example implementation of this library.
  */
@@ -28,14 +28,17 @@ int main(int argc, char **argv) {
                 std::cout << "Process Finished. Execute another? Enter a project number 1-6: " << std::endl;
                 std::string proj;
                 std::cin >> proj;
-                if (std::stoi(proj) < 1 || std::stoi(proj) > 6) running = false;
+                if (std::stoi(proj) < 1 || std::stoi(proj) > 6) {
+                    std::cout << "Quitting Application. . ." << std::endl;
+                    running = !running;
+                    break;
+                }
                 std::cout << "Selecting Project #" << proj << std::endl;
                 std::cout << "Continuing. . ." << std::endl;
                 unsigned short PID = std::stoi(proj);
                 app->setProject(PID);
             }
             RET_CODE = app ? 0 : 1;
-            std::cout << "Application Created Successfully" << std::endl;
         } catch (std::bad_alloc &e) {
             std::cerr << "Insufficient Memory" << e.what() << std::endl;
             RET_CODE = 2;
@@ -58,7 +61,7 @@ int main(int argc, char **argv) {
         std::cout << "Done." << std::endl;
     }	// end of scope
 
-    std::cout << "Calculation ran for " << static_cast<float>(clock() - timer_start) / CLOCKS_PER_SEC << " second(s)!"
+    std::cout << "Calculations ran for " << static_cast<float>(clock() - timer_start) / CLOCKS_PER_SEC << " second(s)!"
         << std::endl;
 
     return RET_CODE;

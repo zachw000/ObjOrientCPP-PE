@@ -22,6 +22,12 @@ int Projects::ProjectSix::run() {
     std::cout << "Project Name: " << this->getName() << std::endl;
     std::cout << "Project ID: " << this->getID() << std::endl;
 
+    std::cout << "Calculating sum square difference for n = " << limit << "..." << std::endl;
+    unsigned int result = Math::PEMath::sumSquareDifference(limit);
+    std::cout << "Result: " << result << std::endl;
+
+    std::cout << "Project Six completed successfully!" << std::endl;
+
     return 0;
 }
 

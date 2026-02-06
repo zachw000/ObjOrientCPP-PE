@@ -179,3 +179,10 @@ bool Math::PEMath::checkPalindrome(int n) {
     
     return reverse == original;
 }
+
+unsigned int Math::PEMath::sumSquareDifference(const unsigned int n) {
+    // Using sum formula for squares and square of sums
+    // and calculating the difference in a pre-simplified formula.
+    return static_cast<unsigned int>((1 / 2.0) * 
+        (std::pow(n, 4) / 2.0 + std::pow(n, 3) / 3.0 - std::pow(n, 2) / 2.0 - n / 3.0));
+}
