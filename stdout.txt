@@ -1,0 +1,140 @@
+=== Project 1 ===
+Multiple Arguments Detected
+Arg Count: 2
+Arg Data: 
+Arg 0: bin/Manager
+Arg 1: 1
+In Branch.
+Current Project ID is: 1
+Multiples of 3 and 5
+Project ID: 1
+Multiples: 3, 5
+Limit: 1000
+Sum of Multiples: 233168
+Process Finished. Execute another? Enter a project number 1-6: 
+Done.
+DELETING NODE Multiples of 3 and 5	 Node Address:	0x10103e2f0
+DELETING NODE Even Fibonacci numbers	 Node Address:	0x10103e680
+DELETING NODE Largest Prime Factor	 Node Address:	0x10103e6a0
+DELETING NODE Largest Palindrome	 Node Address:	0x10103e6f0
+DELETING NODE The Smallest Multiple	 Node Address:	0x10103e710
+DELETING NODE Sum Square Difference	 Node Address:	0x10103e730
+[32mNodes cleared.[0m		
+Calculations ran for 0.000508 second(s)!
+
+=== Project 2 ===
+Multiple Arguments Detected
+Arg Count: 2
+Arg Data: 
+Arg 0: bin/Manager
+Arg 1: 2
+In Branch.
+Current Project ID is: 2
+Even Fibonacci Numbers (linker test 2)
+Calculating the sum of even Fibonacci numbers up to 4000000...
+Sum of even Fibonacci numbers: 4613732
+Project Name: Even Fibonacci numbers
+Project ID: 2
+Process Finished. Execute another? Enter a project number 1-6: 
+Done.
+DELETING NODE Multiples of 3 and 5	 Node Address:	0x100ad62f0
+DELETING NODE Even Fibonacci numbers	 Node Address:	0x100ad6680
+DELETING NODE Largest Prime Factor	 Node Address:	0x100ad66a0
+DELETING NODE Largest Palindrome	 Node Address:	0x100ad66f0
+DELETING NODE The Smallest Multiple	 Node Address:	0x100ad6710
+DELETING NODE Sum Square Difference	 Node Address:	0x100ad6730
+[32mNodes cleared.[0m		
+Calculations ran for 0.000738 second(s)!
+
+=== Project 3 ===
+Multiple Arguments Detected
+Arg Count: 2
+Arg Data: 
+Arg 0: bin/Manager
+Arg 1: 3
+In Branch.
+Current Project ID is: 3
+Largest Prime Factor (Problem 3)
+Project ID: 3
+The largest prime factor of 600851475143 is: 
+	6857
+Process Finished. Execute another? Enter a project number 1-6: 
+Done.
+DELETING NODE Multiples of 3 and 5	 Node Address:	0x7d6c009c0
+DELETING NODE Even Fibonacci numbers	 Node Address:	0x7d6c009e0
+DELETING NODE Largest Prime Factor	 Node Address:	0x104d86760
+DELETING NODE Largest Palindrome	 Node Address:	0x104d867d0
+DELETING NODE The Smallest Multiple	 Node Address:	0x104d86810
+DELETING NODE Sum Square Difference	 Node Address:	0x104d86850
+[32mNodes cleared.[0m		
+Calculations ran for 0.001736 second(s)!
+
+=== Project 4 ===
+Multiple Arguments Detected
+Arg Count: 2
+Arg Data: 
+Arg 0: bin/Manager
+Arg 1: 4
+In Branch.
+Current Project ID is: 4
+Project ID: 4
+Largest Palindrome: 906609
+Process Finished. Execute another? Enter a project number 1-6: 
+Done.
+DELETING NODE Multiples of 3 and 5	 Node Address:	0x7ecc009c0
+DELETING NODE Even Fibonacci numbers	 Node Address:	0x1037ae740
+DELETING NODE Largest Prime Factor	 Node Address:	0x1037ae780
+DELETING NODE Largest Palindrome	 Node Address:	0x1037ae7f0
+DELETING NODE The Smallest Multiple	 Node Address:	0x1037ae830
+DELETING NODE Sum Square Difference	 Node Address:	0x1037ae870
+[32mNodes cleared.[0m		
+Calculations ran for 0.037123 second(s)!
+
+=== Project 5 ===
+Multiple Arguments Detected
+Arg Count: 2
+Arg Data: 
+Arg 0: bin/Manager
+Arg 1: 5
+In Branch.
+Current Project ID is: 5
+The Smallest Multiple
+Project ID: 5
+Calculating the smallest multiple that is evenly divisible by all numbers from 1 to 20...
+Result: 232792560
+Process Finished. Execute another? Enter a project number 1-6: 
+Done.
+DELETING NODE Multiples of 3 and 5	 Node Address:	0x104986330
+DELETING NODE Even Fibonacci numbers	 Node Address:	0x104986760
+DELETING NODE Largest Prime Factor	 Node Address:	0x9e8c009c0
+DELETING NODE Largest Palindrome	 Node Address:	0x9e8c009e0
+DELETING NODE The Smallest Multiple	 Node Address:	0x9e8c00a00
+DELETING NODE Sum Square Difference	 Node Address:	0x9e8c00a20
+[32mNodes cleared.[0m		
+Calculations ran for 0.00095 second(s)!
+
+=== Project 6 ===
+Multiple Arguments Detected
+Arg Count: 2
+Arg Data: 
+Arg 0: bin/Manager
+Arg 1: 6
+In Branch.
+Current Project ID is: 6
+Running Project Six...
+Project Name: Sum Square Difference
+Project ID: 6
+Calculating sum square difference for n = 100...
+Result: 25164150
+Project Six completed successfully!
+Process Finished. Execute another? Enter a project number 1-6: 
+Done.
+DELETING NODE Multiples of 3 and 5	 Node Address:	0xcb8c009c0
+DELETING NODE Even Fibonacci numbers	 Node Address:	0x1029b6740
+DELETING NODE Largest Prime Factor	 Node Address:	0x1029b6780
+DELETING NODE Largest Palindrome	 Node Address:	0x1029b67f0
+DELETING NODE The Smallest Multiple	 Node Address:	0x1029b6830
+DELETING NODE Sum Square Difference	 Node Address:	0x1029b6870
+[32mNodes cleared.[0m		
+Calculations ran for 0.00099 second(s)!
+
