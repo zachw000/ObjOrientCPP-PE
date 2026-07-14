@@ -17,8 +17,8 @@ std::unique_ptr<Runtime::Project> Projects::ProjectList::getProject(const int id
     return std::move(projectList[id]);
 }
 
-short Projects::ProjectList::getProjectCount() {
-    return projectList.size();
+int Projects::ProjectList::getProjectCount() {
+    return static_cast<int>(projectList.size());
 }
 
 Projects::ProjectList::ProjectList() {
@@ -28,13 +28,15 @@ Projects::ProjectList::ProjectList() {
     projectList[3] = std::make_unique<Projects::ProjectFour>(4);
     projectList[4] = std::make_unique<Projects::ProjectFive>(5);
     projectList[5] = std::make_unique<Projects::ProjectSix>(6);
+    projectList[6] = std::make_unique<Projects::ProjectSeven>(7);
 
-    this->projectList[0]->setID(1);
-    this->projectList[1]->setID(2);
-    this->projectList[2]->setID(3);
-    this->projectList[3]->setID(4);
-    this->projectList[4]->setID(5);
-    this->projectList[5]->setID(6);
+    projectList[0]->setID(1);
+    projectList[1]->setID(2);
+    projectList[2]->setID(3);
+    projectList[3]->setID(4);
+    projectList[4]->setID(5);
+    projectList[5]->setID(6);
+    projectList[6]->setID(7);
     dlopen("./libmanager.dylib", RTLD_LAZY);
 
 }

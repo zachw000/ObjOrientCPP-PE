@@ -2,6 +2,7 @@
 // Created by Zachary Waldron on 9/28/25.
 //
 #include <iostream>
+#include <ProjectList.hpp>
 #include <Manager.hpp>
 /**
  * An example implementation of this library.
@@ -24,11 +25,12 @@ int main(int argc, char **argv) {
         try {
             bool running = true;
             app->run();
+            int projSize = app->getProjectCount();
             while (running) {
-                std::cout << "Process Finished. Execute another? Enter a project number 1-6: " << std::endl;
+                std::cout << "Process Finished. Execute another? Enter a project number 1-" << projSize << ": " << std::endl;
                 std::string proj;
                 std::cin >> proj;
-                if (std::stoi(proj) < 1 || std::stoi(proj) > 6) {
+                if (std::stoi(proj) < 1 || std::stoi(proj) > projSize) {
                     std::cout << "Quitting Application. . ." << std::endl;
                     running = !running;
                     break;

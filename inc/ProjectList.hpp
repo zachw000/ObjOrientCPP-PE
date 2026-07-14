@@ -6,6 +6,8 @@
 #include "Projects/ProjectFour.hpp"
 #include "Projects/ProjectFive.hpp"
 #include "Projects/ProjectSix.hpp"
+#include "Projects/ProjectSeven.hpp"
+#include <unordered_map>
 #ifndef PROJECTS_H
 #define PROJECTS_H
 
@@ -13,6 +15,7 @@ namespace Projects {
     class ProjectList {
     private:
         inline static std::unordered_map<int, std::unique_ptr<Runtime::Project>> projectList;
+        
     public:
         ProjectList();
 
@@ -29,7 +32,7 @@ namespace Projects {
         static void addProject(int id, std::unique_ptr<Runtime::Project> project);
         static void removeProject(int id);
         static void updateProject(int id, std::unique_ptr<Runtime::Project> project);
-        static short getProjectCount() ;
+        static int getProjectCount() ;
         static std::unique_ptr<Runtime::Project> getProject(int id);
     };
 };

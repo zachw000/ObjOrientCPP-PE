@@ -26,6 +26,7 @@ void Runtime::Application::setProject(unsigned short PID) {
 }
 
 void Runtime::Application::executeProject(std::unique_ptr<Node> proj_addrs) {
+    if (!proj_addrs || !proj_addrs->data) return;
     proj_addrs->data->run();
     return;
 }
@@ -47,6 +48,10 @@ unsigned int Runtime::Application::processCMDs() {
 
 
     return 0;
+}
+
+int Runtime::Application::getProjectCount() {
+    return this->addrs.size();
 }
 
 void Runtime::Application::run() {

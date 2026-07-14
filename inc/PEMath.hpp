@@ -29,6 +29,7 @@ namespace Math {
         static size_t sumMultiples(int multiples[2], int limit);
         static bool checkPalindrome(int n);
         static unsigned int sumSquareDifference(unsigned int n);
+        static unsigned int getNthPrime(unsigned int n);
     };
 
     class Quaternion {

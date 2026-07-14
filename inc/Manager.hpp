@@ -80,6 +80,9 @@ namespace Runtime {
         Project* getProjectByID(unsigned short id);
 
         unsigned int processCMDs() override;
+
+        int getProjectCount();
+
         void run() override;
         void setProject(unsigned short PID);
 

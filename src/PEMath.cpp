@@ -173,7 +173,8 @@ bool Math::PEMath::checkPalindrome(int n) {
     int reverse = 0, original = n, p = std::log10(n);
     while (n > 0) {
         reverse += (n % 0xA) * std::pow(0xA, p);
-        n = (((n - (n % 0xA)) >> 0x1) / 0x5);
+        // n = (((n - (n % 0xA)) >> 0x1) / 0x5);
+        n /= 0xA;
         --p;
     }
     
@@ -185,4 +186,25 @@ unsigned int Math::PEMath::sumSquareDifference(const unsigned int n) {
     // and calculating the difference in a pre-simplified formula.
     return static_cast<unsigned int>((1 / 2.0) * 
         (std::pow(n, 4) / 2.0 + std::pow(n, 3) / 3.0 - std::pow(n, 2) / 2.0 - n / 3.0));
+}
+
+unsigned int Math::PEMath::getNthPrime(const unsigned int n) {
+    if (n == 1) return 2; // The first prime number is 2
+    unsigned int count = 1; // We have already counted the prime number 2
+    unsigned int num = 1; // Start checking from the number 3
+
+    while (count < n) {
+        num += 2; // Check only odd numbers
+        bool isPrime = true;
+        for (unsigned int i = 3; i <= std::sqrt(num); i += 2) {
+            if (num % i == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+        if (isPrime) {
+            count++;
+        }
+    }
+    return num;
 }
